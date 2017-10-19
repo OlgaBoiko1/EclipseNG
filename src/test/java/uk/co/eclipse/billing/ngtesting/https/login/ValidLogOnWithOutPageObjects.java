@@ -12,7 +12,7 @@ public class ValidLogOnWithOutPageObjects extends Parent{
         webDriver.get("https://ngtesting.eclipse-billing.co.uk/Login.aspx");
         webDriver.findElement(By.xpath(".//*[@id='txtCompany']")).sendKeys("olga");
         webDriver.findElement(By.xpath(".//*[@id='txtUsername']")).sendKeys("olga");
-        webDriver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("KB4!ww!g");
+        webDriver.findElement(By.xpath(".//*[@id='txtPassword']")).sendKeys("");
         webDriver.findElement(By.xpath(".//*[@id='cmdLogin']")).click();
         Assert.assertTrue("Home page is not displayed",webDriver.findElement(By.xpath(".//*[text()='Home Page']")).isDisplayed());
 
