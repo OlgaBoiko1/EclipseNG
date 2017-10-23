@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import uk.co.eclipse.billing.ngtesting.https.libs.ActionsWithOurElements;
 
+import static org.hamcrest.core.Is.is;
+
 public class ParentPage{
     WebDriver webDriver;
     Logger logger;
@@ -15,7 +17,7 @@ public class ParentPage{
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         logger = Logger.getLogger(getClass());
-        //actionWithOurElements = new ActionsWithOurElements(webDriver);
+        actionWithOurElements = new ActionsWithOurElements(webDriver);
         PageFactory.initElements(webDriver, this);
     }
 
@@ -28,6 +30,6 @@ public class ParentPage{
                 logger.error("Page can't be opened " + url);
                 Assert.fail("Page can't be opened " + url);
             }
-
     }
+
 }
