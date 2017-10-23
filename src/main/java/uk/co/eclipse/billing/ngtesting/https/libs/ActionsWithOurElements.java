@@ -45,4 +45,30 @@ public class ActionsWithOurElements {
         }
     }
 
+    public boolean isElementPresent(WebElement element){
+        try {
+            if (element.isDisplayed()){
+                logger.info("Element is present on the page");
+                return true;
+            }
+            else return false;
+        }
+        catch(Exception e){
+            return false;
+        }
+    }
+
+    public boolean isTextCorrect(WebElement element,String text){
+        try {
+            if (element.getText().equals(text)){
+                logger.info(text + " is correctly displayed");
+                return true;
+            }
+            return false;
+        }
+        catch(Exception e){
+            return false;
+        }
+    }
+
 }
