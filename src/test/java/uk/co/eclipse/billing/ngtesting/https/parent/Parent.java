@@ -18,6 +18,7 @@ public class Parent {
     private Logger logger = Logger.getLogger(getClass());
     public LoginPage loginPage;
     public HomePage homePage;
+    public ImportCDRPage importCDRPage;
 
     public Parent() {
     }
@@ -32,6 +33,7 @@ public class Parent {
 
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
+        importCDRPage = new ImportCDRPage(webDriver);
     }
 
     @After

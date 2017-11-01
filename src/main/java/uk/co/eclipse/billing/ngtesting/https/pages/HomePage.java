@@ -10,6 +10,15 @@ public class HomePage extends ParentPage{
     @FindBy(xpath = ".//*[@id='Pageheading']/span")
     private WebElement header;
 
+    @FindBy (xpath = ".//span[text()='Billing']")
+    private WebElement menuBilling;
+
+    @FindBy (xpath = ".//span[text()='Call Data Manager']")
+    private WebElement menuCallDataManager;
+
+    @FindBy (xpath = ".//span[text()='Import CDR']")
+    private WebElement menuImportCDR;
+
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -20,5 +29,17 @@ public class HomePage extends ParentPage{
 
     public boolean isHeaderCorrect(){
         return actionWithOurElements.isTextCorrect(header, title);
+    }
+
+    public void clickOnMenuBilling() {
+        actionWithOurElements.clickOnElement(menuBilling);
+    }
+
+    public void clickOnMenuCallDataManager() {
+        actionWithOurElements.clickOnElement(menuCallDataManager);
+    }
+
+    public void clickOnMenuImportCDR() {
+        actionWithOurElements.clickOnElement(menuImportCDR);
     }
 }

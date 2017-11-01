@@ -13,7 +13,6 @@ public class ParentPage{
     Logger logger;
     ActionsWithOurElements actionWithOurElements;
 
-
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         logger = Logger.getLogger(getClass());
@@ -30,6 +29,14 @@ public class ParentPage{
                 logger.error("Page can't be opened " + url);
                 Assert.fail("Page can't be opened " + url);
             }
+    }
+
+    public void checkAC(String message, boolean actualResult, boolean expectedResult){
+
+        if(!(actualResult == expectedResult)){
+            logger.error("AC failed: " + message);
+        }
+        Assert.assertThat(message,actualResult, is(expectedResult));
     }
 
 }
