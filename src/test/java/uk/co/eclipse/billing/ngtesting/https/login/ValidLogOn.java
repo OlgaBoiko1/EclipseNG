@@ -10,7 +10,7 @@ public class ValidLogOn extends Parent{
         loginPage.openLoginPage();
         loginPage.enterCompanyToInput("olga");
         loginPage.enterLoginToInput("olga");
-        loginPage.enterPasswordToInput("KB4!ww!");
+        loginPage.enterPasswordToInput("");
         loginPage.clickOnLoginButton();
         checkAC("Title is not present",homePage.isHeaderPresent(),true);
         checkAC("Title is not correct",homePage.isHeaderCorrect(),true);

@@ -4,7 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.hamcrest.core.Is.is;
+
 public class LoginPage extends ParentPage{
+    HomePage homePage;
+
     @FindBy(id = "txtCompany")
     private WebElement companyInput;
 
@@ -19,6 +23,7 @@ public class LoginPage extends ParentPage{
 
     public LoginPage(WebDriver webDriver){
         super(webDriver);
+        homePage = new HomePage(webDriver);
     }
 
     public void openLoginPage(){
@@ -40,5 +45,15 @@ public class LoginPage extends ParentPage{
     public void clickOnLoginButton(){
         actionWithOurElements.clickOnElement(buttonLogin);
     }
+
+    public void loginUser(String company, String login, String password){
+        openLoginPage();
+        enterCompanyToInput(company);
+        enterLoginToInput(login);
+        enterPasswordToInput(password);
+        clickOnLoginButton();
+        checkAC("Can't work with the page",homePage.isHeaderCorrect(), true);
+    }
+
 }
 
