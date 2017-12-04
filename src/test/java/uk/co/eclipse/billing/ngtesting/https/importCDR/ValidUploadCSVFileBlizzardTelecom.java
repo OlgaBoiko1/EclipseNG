@@ -8,26 +8,25 @@ public class ValidUploadCSVFileBlizzardTelecom extends Parent{
     @Test
     public void validUploadCSVFileBlizzardTelecom(){
         loginPage.loginUser("olga", "olga", "");
-        homePage.clickOnMenuBilling();
-        homePage.clickOnMenuCallDataManager();
-        homePage.clickOnMenuImportCDR();
-        checkAC("Header is not correct",importCDRPage.isHeaderCorrect(), true);
+        homePage.navigateToMenuImportCDR();
         importCDRPage.clickOnButtonSelectCDRFile();
         checkAC("Select File screen is not displayed",importCDRPage.isSelectFileScreenDisplayed(), true);
-        importCDRPage.clickOnButtonSelectFileScreenUpload();
-        checkAC("Upload screen is not displayed",importCDRPage.isUploadScreenDisplayed(), true);
-        importCDRPage.mouseHoverAndClickOnButtonSelect();
-        importCDRPage.selectFileByPath();
-        checkAC("File name is not displayed on Upload screen",importCDRPage.isFileNameDisplayedOnUploadScreen(), true);
-        importCDRPage.clickOnButtonUpload();
-        checkAC("File name is not displayed on Select File screen",importCDRPage.isFileNameDisplayedOnSelectFileScreen(), true);
+        if (!importCDRPage.isFileNameDisplayedOnSelectFileScreen("1BT.csv")) {
+            importCDRPage.clickOnButtonSelectFileScreenUpload();
+            checkAC("Upload screen is not displayed", importCDRPage.isUploadScreenDisplayed(), true);
+            importCDRPage.mouseHoverAndClickOnButtonSelect();
+            importCDRPage.selectCSVFileBlizzardTelecom();
+            checkAC("File name is not displayed on Upload screen", importCDRPage.isFileNameDisplayedOnUploadScreen("1BT.csv"), true);
+            importCDRPage.clickOnButtonUpload();
+            checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen("1BT.csv"), true);
+        }
         importCDRPage.selectFilterInDDByText("Blizzard Telecom (Union Str. aBILLity)");
-        importCDRPage.doubleClickOnFileIcon();
+        importCDRPage.doubleClickOnFileIcon("1BT.csv");
         checkAC("Select File screen is not closed",importCDRPage.isSelectFileScreenDisplayed(), false);
-        checkAC("File is not uploaded",importCDRPage.isFileNameDisplayedOnImportCDRScreen(), true);
-        checkAC("Filter name is not correct",importCDRPage.isFilterNameCorrect("Blizzard Telecom (Union Str. aBILLity)"), true);
-        checkAC("Imported flag is not correct",importCDRPage.isImportedFlagCorrect("No"), true);
-        checkAC("Protected flag is not correct",importCDRPage.isProtectedFlagCorrect("No"), true);
-        checkAC("Edit button is not present for the file",importCDRPage.isEditButtonPresentForFile(), true);
+        checkAC("File is not uploaded",importCDRPage.isFileNameDisplayedOnImportCDRScreen("1BT.csv"), true);
+        checkAC("Filter name is not correct",importCDRPage.isFilterNameCorrect("1BT.csv","Blizzard Telecom (Union Str. aBILLity)"), true);
+        checkAC("Imported flag is not correct",importCDRPage.isImportedFlagCorrect("1BT.csv","No"), true);
+        checkAC("Protected flag is not correct",importCDRPage.isProtectedFlagCorrect("1BT.csv","No"), true);
+        checkAC("Edit button is not present for the file",importCDRPage.isEditButtonPresentForFile("1BT.csv"), true);
     }
 }

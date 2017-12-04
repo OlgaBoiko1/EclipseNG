@@ -13,6 +13,6 @@ public class ValidLogOn extends Parent{
         loginPage.enterPasswordToInput("");
         loginPage.clickOnLoginButton();
         checkAC("Title is not present",homePage.isHeaderPresent(),true);
-        checkAC("Title is not correct",homePage.isHeaderCorrect(),true);
+        checkAC("Title is not correct",homePage.isHeaderHomePageCorrect(),true);
     }
 }

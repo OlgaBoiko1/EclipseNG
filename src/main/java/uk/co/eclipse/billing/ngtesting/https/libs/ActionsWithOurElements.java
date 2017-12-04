@@ -2,23 +2,23 @@ package uk.co.eclipse.billing.ngtesting.https.libs;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
+import java.util.concurrent.TimeUnit;
+
 
 public class ActionsWithOurElements {
     WebDriver webDriver;
     Logger logger;
     WebDriverWait webDriverWait15;
     Actions actions;
-    Robot robot;
 
     public ActionsWithOurElements(WebDriver webDriver){
         this.webDriver = webDriver;
@@ -34,8 +34,8 @@ public class ActionsWithOurElements {
             logger.info(text + " was entered");
         }
         catch (Exception e){
-            logger.error("Can't work with element " + element);
-            Assert.fail("Can't work with element " + element);
+            logger.error("Can't work with element '" + element + "' because: " + e);
+            Assert.fail("Can't work with element " + element + "' because: " + e);
         }
     }
 
@@ -43,73 +43,11 @@ public class ActionsWithOurElements {
         try{
             webDriverWait15.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info("Element was clicked");
+            logger.info("Element is clicked: " + element);
         }
         catch (Exception e){
-            logger.error("Can't work with element " + element);
-            Assert.fail("Can't work with element " + element);
-        }
-    }
-
-    public void setPathToFile(){
-        try{
-            //Enter path D:\Upload\cdr\1BT.csv
-            robot = new Robot();
-            robot.delay(3000);
-            robot.keyPress(KeyEvent.VK_D);
-            robot.keyRelease(KeyEvent.VK_D);
-            robot.keyPress(KeyEvent.VK_SHIFT);
-            robot.keyPress(KeyEvent.VK_SEMICOLON);
-            robot.keyRelease(KeyEvent.VK_SEMICOLON);
-            robot.keyRelease(KeyEvent.VK_SHIFT);
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-            robot.delay(3000);
-            robot.keyPress(KeyEvent.VK_U);
-            robot.keyRelease(KeyEvent.VK_U);
-            robot.keyPress(KeyEvent.VK_P);
-            robot.keyRelease(KeyEvent.VK_P);
-            robot.keyPress(KeyEvent.VK_L);
-            robot.keyRelease(KeyEvent.VK_L);
-            robot.keyPress(KeyEvent.VK_O);
-            robot.keyRelease(KeyEvent.VK_O);
-            robot.keyPress(KeyEvent.VK_A);
-            robot.keyRelease(KeyEvent.VK_A);
-            robot.keyPress(KeyEvent.VK_D);
-            robot.keyRelease(KeyEvent.VK_D);
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-            robot.delay(3000);
-            robot.keyPress(KeyEvent.VK_C);
-            robot.keyRelease(KeyEvent.VK_C);
-            robot.keyPress(KeyEvent.VK_D);
-            robot.keyRelease(KeyEvent.VK_D);
-            robot.keyPress(KeyEvent.VK_R);
-            robot.keyRelease(KeyEvent.VK_R);
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-            robot.delay(3000);
-            robot.keyPress(KeyEvent.VK_NUMPAD1);
-            robot.keyRelease(KeyEvent.VK_NUMPAD1);
-            robot.keyPress(KeyEvent.VK_B);
-            robot.keyRelease(KeyEvent.VK_B);
-            robot.keyPress(KeyEvent.VK_T);
-            robot.keyRelease(KeyEvent.VK_T);
-            robot.keyPress(KeyEvent.VK_PERIOD);
-            robot.keyRelease(KeyEvent.VK_PERIOD);
-            robot.keyPress(KeyEvent.VK_C);
-            robot.keyRelease(KeyEvent.VK_C);
-            robot.keyPress(KeyEvent.VK_S);
-            robot.keyRelease(KeyEvent.VK_S);
-            robot.keyPress(KeyEvent.VK_V);
-            robot.keyRelease(KeyEvent.VK_V);
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-            robot.delay(3000);
-        }
-        catch (AWTException exception){
-            logger.error("Can't enter path to file" + exception);
-            Assert.fail("Can't enter path to file" + exception);
+            logger.error("Can't work with element " + element + "' because: " + e);
+            Assert.fail("Can't work with element " + element + "' because: " + e);
         }
     }
 
@@ -118,24 +56,68 @@ public class ActionsWithOurElements {
             webDriverWait15.until(ExpectedConditions.elementToBeClickable(element));
             actions.moveToElement(element);
             actions.click().build().perform();
-            logger.info("Element is mouse hovered and clicked");
+            logger.info("Element is mouse hovered and clicked: " + element);
         }
         catch (Exception e){
-            logger.error("Can't work with element " + element);
-            Assert.fail("Can't work with element " + element);
+            logger.error("Can't work with element " + element + "' because: " + e);
+            Assert.fail("Can't work with element " + element + "' because: " + e);
         }
     }
 
     public boolean isElementPresent(WebElement element){
         try {
             if (element.isDisplayed()){
-                logger.info("Element is present on the page");
+                logger.info("Element is present on the page: " + element);
                 return true;
             }
             else return false;
         }
         catch(Exception e){
-            logger.info("Element is not present on the page");
+            logger.error("Element is not present on the page: " + element + "' because: " + e);
+            return false;
+        }
+    }
+
+    public boolean isElementPresent(String xpath){
+        try {
+            if (webDriver.findElement(By.xpath(xpath)).isDisplayed()){
+                logger.info("Element is present on the page: " + xpath);
+                return true;
+            }
+            else return false;
+        }
+        catch(Exception e){
+            logger.error("Element is absent on the page: " + xpath + "' because: " + e);
+            return false;
+        }
+    }
+
+    public boolean isElementAbsent(String xpath){
+        try {
+            if (webDriver.findElement(By.xpath(xpath)).isDisplayed()){
+                logger.info("Element is present on the page. It is correct. " + xpath);
+                return false;
+            }
+            else return true;
+        }
+        catch(Exception e){
+            logger.info("Element is absent on the page. It is correct. " + xpath);
+            return true;
+        }
+    }
+
+    public boolean isTextCorrect(String xpath,String text){
+        try {
+            WebElement element = webDriver.findElement(By.xpath(xpath));
+            if (element.getText().equals(text)){
+                logger.info(text + " is correctly displayed");
+                return true;
+            }
+            logger.info(element.getText() + " is displayed for element: " + xpath);
+            return false;
+        }
+        catch(Exception e){
+            logger.error("Exception occurs: " + e);
             return false;
         }
     }
@@ -146,10 +128,11 @@ public class ActionsWithOurElements {
                 logger.info(text + " is correctly displayed");
                 return true;
             }
-            logger.info(element.getText());
+            logger.info(element.getText() + " is displayed for element: " + element);
             return false;
         }
         catch(Exception e){
+            logger.error("Exception occurs: " + e);
             return false;
         }
     }
@@ -157,28 +140,38 @@ public class ActionsWithOurElements {
     public void selectValueInDDByText(WebElement dropDown, String text) {
         try{
             Select optionsFromDD = new Select(dropDown);
-            Thread.sleep(2000);
+            webDriverWait15.until(ExpectedConditions.elementToBeClickable(dropDown));
             optionsFromDD.selectByVisibleText(text);
             logger.info(text + " is selected in drop down");
+            webDriverWait15.until(ExpectedConditions.textToBePresentInElement(optionsFromDD.getFirstSelectedOption(), text));
         }
         catch (Exception e){
-            logger.error("Can't work with drop down");
-            Assert.fail("Can't work with drop down");
+            logger.error("Can't work with drop down: " + dropDown);
+            Assert.fail("Can't work with drop down: " + dropDown);
         }
     }
 
-    public void doubleClickOnElement(WebElement element) {
+    public void doubleClickOnElementByXpath(String xpath) {
         try{
-            webDriverWait15.until(ExpectedConditions.elementToBeClickable(element));
-            Action doubleClick = actions.doubleClick(element).build();
-            doubleClick.perform();
-            doubleClick.perform();
-            logger.info("Element is double clicked");
-            Thread.sleep(2000);
+            WebElement element = webDriver.findElement(By.xpath(xpath));
+            actions.moveToElement(element).click().doubleClick().perform();
+            logger.info("Element is double clicked: " + element);
+            webDriverWait15.until(ExpectedConditions.invisibilityOf(element));
         }
         catch (Exception e){
-            logger.error("Can't double click element " + element);
-            Assert.fail("Can't double click element " + element);
+            logger.error("Can't double click element: " + xpath + e);
+            Assert.fail("Can't double click element" + xpath + e);
+        }
+    }
+
+    public boolean isAlertAbsent() {
+        try {
+            webDriverWait15.until(ExpectedConditions.alertIsPresent());
+            logger.error("Following alert appears: " + webDriver.switchTo().alert().getText());
+            return false;
+        }
+            catch (Exception e) {
+            return true;
         }
     }
 }

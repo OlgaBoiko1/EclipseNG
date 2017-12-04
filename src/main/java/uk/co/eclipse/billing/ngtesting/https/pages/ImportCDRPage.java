@@ -1,27 +1,15 @@
 package uk.co.eclipse.billing.ngtesting.https.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import uk.co.eclipse.billing.ngtesting.https.libs.ActionsWithOurElements;
 
 public class ImportCDRPage extends ParentPage {
-    private String title = "Import CDRs Files";
-    private String fileName = "1BT.csv";
-
-    @FindBy(xpath = ".//*[@id='Pageheading']/p")
-    private WebElement header;
-
-    @FindBy(xpath = ".//td[text()='1BT.csv']/following-sibling::td[1]")
-    private WebElement filterNameElement;
-
-    @FindBy(xpath = ".//span[text()='1BT.csv']")
-    private WebElement fileNameIcon;
 
     @FindBy(xpath = ".//*[@id='ctl00_footerPlaceholder_rfeServerFiles_asyncUpload1row0']/span/span")
     private WebElement fileNameElement;
-
-    @FindBy(xpath = ".//td[text()='1BT.csv']")
-    private WebElement fileNameText;
 
     @FindBy(xpath = ".//span[text()='Upload' and @class='rtbText']")
     private WebElement buttonSelectFileScreenUpload;
@@ -32,17 +20,8 @@ public class ImportCDRPage extends ParentPage {
     @FindBy(xpath = ".//*[@id='ctl00_FunctionBarPlaceHolder_cmdShowFileSelect']/span/img")
     private WebElement buttonSelectCDRFile;
 
-    @FindBy(xpath = ".//*[@id='FileSelectPopup']")
+    @FindBy(id = "FileSelectPopup")
     private WebElement screenSelectFile;
-
-    @FindBy(xpath = ".//td[text()='1BT.csv']/following-sibling::td[2]/a")
-    private WebElement importedFlagElement;
-
-    @FindBy(xpath = ".//td[text()='1BT.csv']/following-sibling::td[3]")
-    private WebElement protectedFlagElement;
-
-    @FindBy(xpath = ".//td[text()='1BT.csv']/preceding-sibling::td[2]/a")
-    private WebElement editButton;
 
     @FindBy(xpath = ".//em[@id='ctl00_footerPlaceholder_rfeServerFiles_windowManagerfileExplorerUpload_title']")
     private WebElement screenUpload;
@@ -61,10 +40,6 @@ public class ImportCDRPage extends ParentPage {
         actionWithOurElements.clickOnElement(buttonSelectCDRFile);
     }
 
-    public boolean isHeaderCorrect(){
-        return actionWithOurElements.isTextCorrect(header, title);
-    }
-
     public boolean isSelectFileScreenDisplayed() {
         return actionWithOurElements.isElementPresent(screenSelectFile);
     }
@@ -81,47 +56,104 @@ public class ImportCDRPage extends ParentPage {
         actionWithOurElements.mouseHoverAndClick(buttonSelect);
     }
 
-    public void selectFileByPath() {
-        actionWithOurElements.setPathToFile();
+    public void selectCSVFileBlizzardTelecom() {
+        workWithUploadWindow.enterPathToCDRFolder();
+        workWithUploadWindow.enterFileNameCSVBlizzardTelecom();
+    }
+
+    public void selectTXTFileGammaWLR() {
+        workWithUploadWindow.enterPathToCDRFolder();
+        workWithUploadWindow.enterFileNameTXTGammaWLR();
+    }
+
+    public void selectCorrectZIPFile() {
+        workWithUploadWindow.enterPathToCDRFolder();
+        workWithUploadWindow.enterFileNameZIPFile();
     }
 
     public void clickOnButtonUpload(){
         actionWithOurElements.clickOnElement(buttonUpload);
     }
 
-    public boolean isFileNameDisplayedOnUploadScreen() {
+    public boolean isFileNameDisplayedOnUploadScreen(String fileName) {
         return actionWithOurElements.isTextCorrect(fileNameElement, fileName);
     }
 
-    public boolean isFileNameDisplayedOnSelectFileScreen() {
-        return actionWithOurElements.isElementPresent(fileNameIcon);
+    public boolean isFileNameDisplayedOnSelectFileScreen(String fileName) {
+        return actionWithOurElements.isElementPresent(".//span[text()='"+fileName+"']");
+    }
+
+    public boolean isFileNameAbsentOnSelectFileScreen(String fileName) {
+        return actionWithOurElements.isElementAbsent(".//span[text()='"+fileName+"']");
     }
 
     public void selectFilterInDDByText(String filterName) {
         actionWithOurElements.selectValueInDDByText(filterDropDown, filterName);
     }
 
-    public void doubleClickOnFileIcon() {
-        actionWithOurElements.doubleClickOnElement(fileNameIcon);
+    public void doubleClickOnFileIcon(String fileName) {
+       actionWithOurElements.doubleClickOnElementByXpath(".//a[@title ='"+fileName+"']");
     }
 
-    public boolean isFileNameDisplayedOnImportCDRScreen() {
-        return actionWithOurElements.isElementPresent(fileNameText);
+    public boolean isFileNameDisplayedOnImportCDRScreen(String fileName) {
+        return actionWithOurElements.isElementPresent(".//td[text()='"+fileName+"']");
     }
 
-    public boolean isFilterNameCorrect(String filterName) {
-        return actionWithOurElements.isTextCorrect(filterNameElement,filterName);
+    public boolean isFilterNameCorrect(String fileName, String filterName) {
+        return actionWithOurElements.isTextCorrect(".//td[text()='"+fileName+"']/following-sibling::td[1]",filterName);
     }
 
-    public boolean isImportedFlagCorrect(String ImportedFlagExpectedValue) {
-        return actionWithOurElements.isTextCorrect(importedFlagElement,ImportedFlagExpectedValue);
+    public boolean isImportedFlagCorrect(String fileName,String ImportedFlagExpectedValue) {
+        return actionWithOurElements.isTextCorrect(".//td[text()='"+fileName+"']/following-sibling::td[2]/a", ImportedFlagExpectedValue);
     }
 
-    public boolean isProtectedFlagCorrect(String ProtectedFlagExpectedValue) {
-        return actionWithOurElements.isTextCorrect(protectedFlagElement,ProtectedFlagExpectedValue);
+    public boolean isProtectedFlagCorrect(String fileName, String ProtectedFlagExpectedValue) {
+        return actionWithOurElements.isTextCorrect(".//td[text()='"+fileName+"']/following-sibling::td[3]",ProtectedFlagExpectedValue);
     }
 
-    public boolean isEditButtonPresentForFile() {
-        return actionWithOurElements.isElementPresent(editButton);
+    public boolean isEditButtonPresentForFile(String fileName) {
+        return actionWithOurElements.isElementPresent(".//td[text()='"+fileName+"']/preceding-sibling::td[2]/a");
     }
+
+    public void uploadFileBlizzardTelecom() {
+        clickOnButtonSelectFileScreenUpload();
+        mouseHoverAndClickOnButtonSelect();
+        selectCSVFileBlizzardTelecom();
+        clickOnButtonUpload();
+    }
+
+    public void uploadFileGammaWLR() {
+        clickOnButtonSelectFileScreenUpload();
+        mouseHoverAndClickOnButtonSelect();
+        selectTXTFileGammaWLR();
+        clickOnButtonUpload();
+    }
+
+    public void uploadCorrectZIPFile() {
+        clickOnButtonSelectFileScreenUpload();
+        mouseHoverAndClickOnButtonSelect();
+        selectCorrectZIPFile();
+        clickOnButtonUpload();
+    }
+
+    public void selectFile(String fileName, String filterName) {
+        clickOnButtonSelectCDRFile();
+        if (!isFileNameDisplayedOnSelectFileScreen(fileName)) {
+            if (filterName.equals("Blizzard Telecom (Union Str. aBILLity)")){
+                uploadFileBlizzardTelecom();
+            }
+            else if (filterName.equals("Gamma WLR/WLRPPU/WLROA FCSv3)")){
+                uploadFileGammaWLR();
+            }
+            Assert.assertTrue("File name is not displayed on Select File screen", isFileNameDisplayedOnSelectFileScreen(fileName));
+        }
+        selectFilterInDDByText(filterName);
+        doubleClickOnFileIcon(fileName);
+        Assert.assertTrue("File is not uploaded", isFileNameDisplayedOnImportCDRScreen(fileName));
+    }
+
+    public boolean isAlertAbsent() {
+        return actionWithOurElements.isAlertAbsent();
+    }
+
 }

@@ -1,10 +1,10 @@
 package uk.co.eclipse.billing.ngtesting.https.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static org.hamcrest.core.Is.is;
 
 public class LoginPage extends ParentPage{
     HomePage homePage;
@@ -52,7 +52,7 @@ public class LoginPage extends ParentPage{
         enterLoginToInput(login);
         enterPasswordToInput(password);
         clickOnLoginButton();
-        checkAC("Can't work with the page",homePage.isHeaderCorrect(), true);
+        Assert.assertTrue("Can't work with the Home Page", homePage.isHeaderHomePageCorrect());
     }
 
 }

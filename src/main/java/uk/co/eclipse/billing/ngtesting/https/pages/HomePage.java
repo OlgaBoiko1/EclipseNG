@@ -1,13 +1,18 @@
 package uk.co.eclipse.billing.ngtesting.https.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends ParentPage{
-    private String title = "Home Page";
+    private String titleHomePage = "Home Page";
+    private String titleImportCDRPage = "Import CDRs Files";
 
     @FindBy(xpath = ".//*[@id='Pageheading']/span")
+    private WebElement headerHomePage;
+
+    @FindBy(xpath = ".//*[@id='Pageheading']/p")
     private WebElement header;
 
     @FindBy (xpath = ".//span[text()='Billing']")
@@ -27,7 +32,11 @@ public class HomePage extends ParentPage{
         return actionWithOurElements.isElementPresent(header);
     }
 
-    public boolean isHeaderCorrect(){
+    public boolean isHeaderHomePageCorrect(){
+        return actionWithOurElements.isTextCorrect(headerHomePage, titleHomePage);
+    }
+
+    public boolean isHeaderCorrect(String title){
         return actionWithOurElements.isTextCorrect(header, title);
     }
 
@@ -41,5 +50,12 @@ public class HomePage extends ParentPage{
 
     public void clickOnMenuImportCDR() {
         actionWithOurElements.clickOnElement(menuImportCDR);
+    }
+
+    public void navigateToMenuImportCDR() {
+        clickOnMenuBilling();
+        clickOnMenuCallDataManager();
+        clickOnMenuImportCDR();
+        Assert.assertTrue("Import CDR Page header is not correct", isHeaderCorrect(titleImportCDRPage));
     }
 }
