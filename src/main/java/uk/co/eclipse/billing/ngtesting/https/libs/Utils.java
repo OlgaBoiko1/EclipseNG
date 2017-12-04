@@ -28,5 +28,6 @@ public class Utils {
             log.info("Unable to write image to file: " + e.getMessage());
             }
     }
+
 }
 
