@@ -3,6 +3,7 @@ package uk.co.eclipse.billing.ngtesting.https.login;
 import org.junit.Test;
 import uk.co.eclipse.billing.ngtesting.https.parent.Parent;
 
+
 public class ValidLogOn extends Parent{
 
     @Test
@@ -12,7 +13,8 @@ public class ValidLogOn extends Parent{
         loginPage.enterLoginToInput("olga");
         loginPage.enterPasswordToInput("");
         loginPage.clickOnLoginButton();
-        checkAC("Title is not present",homePage.isHeaderPresent(),true);
-        checkAC("Title is not correct",homePage.isHeaderHomePageCorrect(),true);
+//        homePage.confirmUpdateScreenIfExistForUser("olga");
+        checkAC("Title of Home Page is not present",homePage.isHeaderHomePagePresent(),true);
+        checkAC("Title of Home Page is not correct",homePage.isHeaderHomePageCorrect(),true);
     }
 }

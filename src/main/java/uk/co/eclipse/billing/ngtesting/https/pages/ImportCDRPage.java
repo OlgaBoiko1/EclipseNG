@@ -1,12 +1,12 @@
 package uk.co.eclipse.billing.ngtesting.https.pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import uk.co.eclipse.billing.ngtesting.https.libs.ActionsWithOurElements;
+import uk.co.eclipse.billing.ngtesting.https.libs.Utils;
 
 public class ImportCDRPage extends ParentPage {
+    private Utils utils = new Utils();
 
     @FindBy(xpath = ".//*[@id='ctl00_footerPlaceholder_rfeServerFiles_asyncUpload1row0']/span/span")
     private WebElement fileNameElement;
@@ -145,11 +145,11 @@ public class ImportCDRPage extends ParentPage {
             else if (filterName.equals("Gamma WLR/WLRPPU/WLROA FCSv3)")){
                 uploadFileGammaWLR();
             }
-            Assert.assertTrue("File name is not displayed on Select File screen", isFileNameDisplayedOnSelectFileScreen(fileName));
+            utils.myAssertTrue("File name is not displayed on Select File screen", isFileNameDisplayedOnSelectFileScreen(fileName));
         }
         selectFilterInDDByText(filterName);
         doubleClickOnFileIcon(fileName);
-        Assert.assertTrue("File is not uploaded", isFileNameDisplayedOnImportCDRScreen(fileName));
+        utils.myAssertTrue("File is not uploaded", isFileNameDisplayedOnImportCDRScreen(fileName));
     }
 
     public boolean isAlertAbsent() {
