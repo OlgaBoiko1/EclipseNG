@@ -2,7 +2,6 @@ package uk.co.eclipse.billing.ngtesting.https.libs;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,8 +9,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
 
 
 public class ActionsWithOurElements {
@@ -95,13 +92,27 @@ public class ActionsWithOurElements {
     public boolean isElementAbsent(String xpath){
         try {
             if (webDriver.findElement(By.xpath(xpath)).isDisplayed()){
-                logger.info("Element is present on the page. It is correct. " + xpath);
+                //logger.info("Element is present on the page. It is correct. " + xpath);
                 return false;
             }
             else return true;
         }
         catch(Exception e){
-            logger.info("Element is absent on the page. It is correct. " + xpath);
+            //logger.info("Element is absent on the page. It is correct. " + xpath);
+            return true;
+        }
+    }
+
+    public boolean isElementAbsent(WebElement element){
+        try {
+            if (element.isDisplayed()){
+                logger.error("Element is present on the page. It is incorrect. " + element);
+                return false;
+            }
+            else return true;
+        }
+        catch(Exception e){
+            logger.info("Element is absent on the page. It is correct. " + element);
             return true;
         }
     }
@@ -125,7 +136,7 @@ public class ActionsWithOurElements {
     public boolean isTextCorrect(WebElement element,String text){
         try {
             if (element.getText().equals(text)){
-                logger.info(text + " is correctly displayed");
+                logger.info(text + " text is correctly displayed");
                 return true;
             }
             logger.info(element.getText() + " is displayed for element: " + element);
@@ -172,6 +183,24 @@ public class ActionsWithOurElements {
         }
             catch (Exception e) {
             return true;
+        }
+    }
+
+    public void setCheckBoxToSelected(WebElement checkBox) {
+        try{
+            Boolean statusChechBox = checkBox.isSelected();
+            if(statusChechBox){
+                logger.info("CheckBox is initially checked: "+ checkBox);
+            }
+            else{
+                webDriverWait15.until(ExpectedConditions.elementToBeClickable(checkBox));
+                checkBox.click();
+                logger.info("Check box is clicked: " + checkBox);
+            }
+        }
+        catch (Exception e){
+            logger.error("Can't work with element: " + checkBox);
+            Assert.fail("Can't work with element: " + checkBox);
         }
     }
 }

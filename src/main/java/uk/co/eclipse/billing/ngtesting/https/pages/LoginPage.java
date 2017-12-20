@@ -1,13 +1,14 @@
 package uk.co.eclipse.billing.ngtesting.https.pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import uk.co.eclipse.billing.ngtesting.https.libs.Utils;
 
 
 public class LoginPage extends ParentPage{
     HomePage homePage;
+    Utils utils = new Utils();
 
     @FindBy(id = "txtCompany")
     private WebElement companyInput;
@@ -52,7 +53,7 @@ public class LoginPage extends ParentPage{
         enterLoginToInput(login);
         enterPasswordToInput(password);
         clickOnLoginButton();
-        Assert.assertTrue("Can't work with the Home Page", homePage.isHeaderHomePageCorrect());
+        utils.myAssertTrue("Can't work with the Home Page", homePage.isHeaderHomePageCorrect());
     }
 
 }
