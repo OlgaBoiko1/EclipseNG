@@ -27,19 +27,26 @@ public class DataBaseData {
 	}
 
 	public boolean getIsSysUpdated(String user) throws SQLException, ClassNotFoundException, IOException{
-		String query = "SELECT isSysUpdated FROM users WHERE username = '" + user  + "'";
-		logger.info("Choose following data from DB: " + query);
 		sqlServerDB = new Database("sqlServer_DB","sqlServer");
 
-		//If use function selectValue from DB than following code
-		//boolean isSystemUpdated = Boolean.valueOf(sqlServerDB.selectValue(query));
+		//Select customer prefix from the system_settings table (to create correct username)
+		String customer_prefix_query = "SELECT customer_prefix FROM system_settings";
+		List<ArrayList> customerPrefixValues;
+		customerPrefixValues = sqlServerDB.selectTable(customer_prefix_query);
+		String customerPrefix = customerPrefixValues.get(1).get(1).toString();
 
 		//If we use function selectTable from DB than following code
+		String isSysUpdated_query = "SELECT isSysUpdated FROM users WHERE username = '" + customerPrefix + "_" + user  + "'";
+		logger.info("Choose following data from DB: " + isSysUpdated_query);
 		List<ArrayList> isSystemUpdateValues;
-		isSystemUpdateValues = sqlServerDB.selectTable(query);
+		isSystemUpdateValues = sqlServerDB.selectTable(isSysUpdated_query);
+
 		boolean isSystemUpdated = Boolean.valueOf(isSystemUpdateValues.get(1).get(1).toString());
 		logger.info("Data is successfully chosen from DB");
 		return isSystemUpdated;
+
+		//If use function selectValue from DB than following code
+		//boolean isSystemUpdated = Boolean.valueOf(sqlServerDB.selectValue(isSysUpdated_query));
 	}
 }
 

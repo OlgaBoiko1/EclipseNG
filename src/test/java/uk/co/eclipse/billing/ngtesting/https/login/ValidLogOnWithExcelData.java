@@ -13,7 +13,7 @@ public class ValidLogOnWithExcelData extends Parent{
     private ExcelDriver excelDriver;
 
     @Test
-    public void ValidLogOnWithExcelData() throws IOException {
+    public void validLogOnWithExcelData() throws IOException {
         excelDriver = new ExcelDriver();
         Map<String,String> dataSet = excelDriver.getMultipleData(ConfigData.getCfgValue("DATA_FILE_PATH") + "testLoginData.xls","ValidLogOn",1);
         loginPage.openLoginPage();
@@ -21,7 +21,7 @@ public class ValidLogOnWithExcelData extends Parent{
         loginPage.enterLoginToInput(dataSet.get("login"));
         loginPage.enterPasswordToInput(dataSet.get("password"));
         loginPage.clickOnLoginButton();
-        homePage.confirmUpdateScreenIfExistForUser("olga");
+        homePage.confirmUpdateScreenIfExistForUser("login");
         checkAC("Title of Home Page is not present",homePage.isHeaderHomePagePresent(),true);
         checkAC("Title of Home Page is not correct",homePage.isHeaderHomePageCorrect(),true);
     }

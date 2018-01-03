@@ -17,7 +17,6 @@ public class ValidLogOn extends Parent{
     String company, login, password;
 
     public ValidLogOn(String company, String login, String password){
-        super();
         this.company = company;
         this.login = login;
         this.password = password;
@@ -31,13 +30,13 @@ public class ValidLogOn extends Parent{
 
 
     @Test
-    public void ValidLogOn() {
+    public void validLogOn() {
         loginPage.openLoginPage();
         loginPage.enterCompanyToInput(company);
         loginPage.enterLoginToInput(login);
         loginPage.enterPasswordToInput(password);
         loginPage.clickOnLoginButton();
-        homePage.confirmUpdateScreenIfExistForUser("olga");
+        homePage.confirmUpdateScreenIfExistForUser(login);
         checkAC("Title of Home Page is not present",homePage.isHeaderHomePagePresent(),true);
         checkAC("Title of Home Page is not correct",homePage.isHeaderHomePageCorrect(),true);
     }
