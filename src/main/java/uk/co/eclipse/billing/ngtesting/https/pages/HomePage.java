@@ -3,12 +3,10 @@ package uk.co.eclipse.billing.ngtesting.https.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import uk.co.eclipse.billing.ngtesting.https.libs.Utils;
 
 public class HomePage extends ParentPage{
     private String titleHomePage = "Home Page";
     private String titleImportCDRPage = "Import CDRs Files";
-    private Utils utils = new Utils();
 
     @FindBy(xpath = ".//*[@id='Pageheading']/span")
     private WebElement headerHomePage;

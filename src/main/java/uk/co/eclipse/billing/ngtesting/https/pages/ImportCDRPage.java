@@ -3,10 +3,8 @@ package uk.co.eclipse.billing.ngtesting.https.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import uk.co.eclipse.billing.ngtesting.https.libs.Utils;
 
 public class ImportCDRPage extends ParentPage {
-    private Utils utils = new Utils();
 
     @FindBy(xpath = ".//*[@id='ctl00_footerPlaceholder_rfeServerFiles_asyncUpload1row0']/span/span")
     private WebElement fileNameElement;
