@@ -8,7 +8,7 @@ import uk.co.eclipse.billing.ngtesting.https.parent.Parent;
 public class ValidLogOnWithOutPageObjects extends Parent{
 
     @Test
-    public void ValidLogOnWithOutPageObjects() {
+    public void validLogOnWithOutPageObjects() {
         webDriver.get("https://ngtesting.eclipse-billing.co.uk/Login.aspx");
         webDriver.findElement(By.xpath(".//*[@id='txtCompany']")).sendKeys("olga");
         webDriver.findElement(By.xpath(".//*[@id='txtUsername']")).sendKeys("olga");
