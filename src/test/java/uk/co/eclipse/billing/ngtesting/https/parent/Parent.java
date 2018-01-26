@@ -9,6 +9,7 @@ import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import uk.co.eclipse.billing.ngtesting.https.libs.DataBaseData;
+import uk.co.eclipse.billing.ngtesting.https.libs.Properties;
 import uk.co.eclipse.billing.ngtesting.https.libs.Utils;
 import uk.co.eclipse.billing.ngtesting.https.pages.*;
 
@@ -24,7 +25,6 @@ public class Parent {
     private String pathToScreenshot;
     private boolean isTestPass = false;
     private boolean isScreenshotTaken = false;
-    private String browser = System.getProperty("browser");
 
     //initialize all pages
     public LoginPage loginPage;
@@ -43,7 +43,7 @@ public class Parent {
     public void setUp() {
         File file = new File("");
 
-        if (browser.equalsIgnoreCase("Chrome")){
+        if (Properties.getBrowser().equalsIgnoreCase("Chrome")){
             logger.info("Chrome will be started");
             File fileFF = new File("./drivers/chromedriver.exe");
             System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
@@ -54,7 +54,7 @@ public class Parent {
 
         pathToScreenshot = file.getAbsolutePath() + "\\target\\screenshots\\" + this.getClass().getPackage().getName()
                 + "\\" + this.getClass().getSimpleName() + "\\"
-                + this.testName.getMethodName() + "_" + browser + ".jpg";
+                + this.testName.getMethodName() + "_" + Properties.getBrowser() + ".jpg";
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -80,10 +80,10 @@ public class Parent {
         if (!(actualResult == expectedResult)) {
             utils.screenShot(pathToScreenshot);
             isScreenshotTaken = true;
-            logger.error("AC failed: " + message + ". Browser = " + browser);
+            logger.error("AC failed: " + message + ". Browser = " + Properties.getBrowser());
         }
         else setTestPass();
-        Assert.assertThat(message + ". Browser = " + browser + ". ScreenShot: " + pathToScreenshot, actualResult, is(expectedResult));
+        Assert.assertThat(message + ". Browser = " + Properties.getBrowser() + ". ScreenShot: " + pathToScreenshot, actualResult, is(expectedResult));
     }
 
     private void setTestPass(){

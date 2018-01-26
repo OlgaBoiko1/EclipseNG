@@ -15,6 +15,8 @@ public class Database{
    private String urlDB;
    private String driverDB;
    private Logger logger;
+   private String user_name;
+   private String user_pass;
 
     /*
      *  Constructor opens connection to database using connection string from config.properties file.
@@ -23,8 +25,10 @@ public class Database{
      */
     public Database(String db, String driver) throws IOException, ClassNotFoundException, SQLException {
         logger = Logger.getLogger(getClass());
-        urlDB=getCfgValue(db);
+        urlDB = getCfgValue(db) + Properties.getNameDB();
         driverDB = getCfgValue(driver);
+        user_name=Properties.getUserNameDB();
+        user_pass=Properties.getUserPassDB();
         logger.info("Successfully get DB url.");
 
         // Load driver for JDBC class
@@ -32,8 +36,6 @@ public class Database{
         logger.info("Successfully get DB driver.");
         
         // Create a connection to the database
-        String user_name=getCfgValue((db + "_USER"));
-        String user_pass=getCfgValue((db + "_PASSWORD"));
         connection= DriverManager.getConnection(urlDB, user_name, user_pass);
         logger.info("Successfully connected to DB.");
     }
