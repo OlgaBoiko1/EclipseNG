@@ -1,13 +1,17 @@
 package uk.co.eclipse.billing.ngtesting.https.importCDR;
 
 import org.junit.Test;
+import uk.co.eclipse.billing.ngtesting.https.libs.Properties;
 import uk.co.eclipse.billing.ngtesting.https.parent.Parent;
 
 public class ValidUploadZIPFile extends Parent {
+    public String company = Properties.getCompany();
+    public String login = Properties.getLogin();
+    public String password = Properties.getPassword();
 
     @Test
     public void validUploadZIPFile(){
-        loginPage.loginUser("olga", "olga", "");
+        loginPage.loginUser(company, login, password);
         homePage.navigateToMenuImportCDR();
         importCDRPage.clickOnButtonSelectCDRFile();
         importCDRPage.uploadCorrectZIPFile();
