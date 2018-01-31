@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
+
 public class ActionsWithOurElements {
     WebDriver webDriver;
     Logger logger;
@@ -167,7 +168,6 @@ public class ActionsWithOurElements {
             WebElement element = webDriver.findElement(By.xpath(xpath));
             actions.moveToElement(element).click().doubleClick().perform();
             logger.info("Element is double clicked: " + element);
-            webDriverWait15.until(ExpectedConditions.invisibilityOf(element));
         }
         catch (Exception e){
             logger.error("Can't double click element: " + xpath + e);
@@ -178,7 +178,7 @@ public class ActionsWithOurElements {
     public boolean isAlertAbsent() {
         try {
             webDriverWait15.until(ExpectedConditions.alertIsPresent());
-            logger.error("Following alert appears: " + webDriver.switchTo().alert().getText());
+            logger.info("Following alert appears: " + webDriver.switchTo().alert().getText());
             return false;
         }
             catch (Exception e) {
@@ -202,5 +202,10 @@ public class ActionsWithOurElements {
             logger.error("Can't work with element: " + checkBox);
             Assert.fail("Can't work with element: " + checkBox);
         }
+    }
+
+    public void acceptAlert() {
+        webDriver.switchTo().alert().accept();
+        logger.info("Accept alert");
     }
 }

@@ -106,7 +106,7 @@ public class ImportCDRPage extends ParentPage {
     }
 
     public boolean isProtectedFlagCorrect(String fileName, String ProtectedFlagExpectedValue) {
-        return actionWithOurElements.isTextCorrect(".//td[text()='"+fileName+"']/following-sibling::td[3]",ProtectedFlagExpectedValue);
+        return actionWithOurElements.isTextCorrect(".//td[text()='"+fileName+"']/following-sibling::td[4]",ProtectedFlagExpectedValue);
     }
 
     public boolean isEditButtonPresentForFile(String fileName) {
@@ -152,6 +152,12 @@ public class ImportCDRPage extends ParentPage {
 
     public boolean isAlertAbsent() {
         return actionWithOurElements.isAlertAbsent();
+    }
+
+    public void acceptAlertIfPresent(){
+        if(!actionWithOurElements.isAlertAbsent()) {
+            actionWithOurElements.acceptAlert();
+        }
     }
 
 }
