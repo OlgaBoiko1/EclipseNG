@@ -20,8 +20,8 @@ public class WorkWithUploadWindow {
         try{
             robot = new Robot();
             robot.delay(3000);
-            robot.keyPress(KeyEvent.VK_D);
-            robot.keyRelease(KeyEvent.VK_D);
+            robot.keyPress(KeyEvent.VK_C);
+            robot.keyRelease(KeyEvent.VK_C);
             robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_SEMICOLON);
             robot.keyRelease(KeyEvent.VK_SEMICOLON);

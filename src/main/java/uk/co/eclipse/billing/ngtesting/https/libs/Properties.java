@@ -9,6 +9,8 @@ public class Properties {
     public static String nameDB = System.getProperty("nameDB");
     public static String user_name_DB = System.getProperty("userNameDB");
     public static String user_pass_DB = System.getProperty("userPassDB");
+    public static String CDRFileName = System.getProperty("CDRFileName");
+    public static String CDRFilterName = System.getProperty("CDRFilterName");
 
     public static String getCompany(){
         return company;
@@ -37,4 +39,13 @@ public class Properties {
     public static String getBrowser(){
         return browser;
     }
+
+    public static String getCDRFileName(){
+        return CDRFileName;
+    }
+
+    public static String getCDRFilterName(){
+        return CDRFilterName;
+    }
+
 }

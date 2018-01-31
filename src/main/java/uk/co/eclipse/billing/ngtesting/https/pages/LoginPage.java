@@ -51,8 +51,8 @@ public class LoginPage extends ParentPage{
         enterLoginToInput(login);
         enterPasswordToInput(password);
         clickOnLoginButton();
-        homePage.confirmUpdateScreenIfExistForUser(login);
         utils.myAssertTrue("Can't work with the Home Page", homePage.isHeaderHomePageCorrect());
+        homePage.confirmUpdateScreenIfExistForUser(login);
     }
 
 }

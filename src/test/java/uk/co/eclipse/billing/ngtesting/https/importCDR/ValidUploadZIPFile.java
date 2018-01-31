@@ -15,6 +15,7 @@ public class ValidUploadZIPFile extends Parent {
         homePage.navigateToMenuImportCDR();
         importCDRPage.clickOnButtonSelectCDRFile();
         importCDRPage.uploadCorrectZIPFile();
+        checkAC("Alert shouldn't be displayed", importCDRPage.isAlertAbsent(), true);
         checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen("1BT.csv"), true);
         checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen("1DaisyAllMobile.CSV"), true);
         checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen("1GammaWLR.txt"), true);
