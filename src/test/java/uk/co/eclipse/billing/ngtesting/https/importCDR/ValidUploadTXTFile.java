@@ -1,16 +1,35 @@
 package uk.co.eclipse.billing.ngtesting.https.importCDR;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import uk.co.eclipse.billing.ngtesting.https.libs.ConfigData;
 import uk.co.eclipse.billing.ngtesting.https.libs.Properties;
+import uk.co.eclipse.billing.ngtesting.https.libs.SpreadsheetData;
 import uk.co.eclipse.billing.ngtesting.https.parent.Parent;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
 
+@RunWith(value = Parameterized.class)
 public class ValidUploadTXTFile extends Parent {
+    String cdrFileName, cdrFilterName;
     public String company = Properties.getCompany();
     public String login = Properties.getLogin();
     public String password = Properties.getPassword();
-    public String CDRFileName = Properties.getCDRFileName();
-    public String CDRFilterName = Properties.getCDRFilterName();
+
+    public ValidUploadTXTFile(String cdrFileName, String cdrFilterName){
+        this.cdrFileName = cdrFileName;
+        this.cdrFilterName = cdrFilterName;
+    }
+
+    @Parameterized.Parameters
+    public static Collection testData() throws IOException {
+        InputStream spreadsheet = new FileInputStream(ConfigData.getCfgValue("DATA_FILE_PATH") + "testImportCDRData.xls");
+        return new SpreadsheetData(spreadsheet, "ValidUploadTXTFile").getData();
+    }
 
     @Test
     public void validUploadTXTFile(){
@@ -18,23 +37,25 @@ public class ValidUploadTXTFile extends Parent {
         homePage.navigateToMenuImportCDR();
         importCDRPage.clickOnButtonSelectCDRFile();
         checkAC("Select File screen is not displayed",importCDRPage.isSelectFileScreenDisplayed(), true);
-        if (importCDRPage.isFileNameAbsentOnSelectFileScreen(CDRFileName)) {
+        if (importCDRPage.isFileNameAbsentOnSelectFileScreen(cdrFileName)) {
             importCDRPage.clickOnButtonSelectFileScreenUpload();
             checkAC("Upload screen is not displayed", importCDRPage.isUploadScreenDisplayed(), true);
             importCDRPage.mouseHoverAndClickOnButtonSelect();
             importCDRPage.selectTXTFileGammaWLR();
-            checkAC("File name is not displayed on Upload screen", importCDRPage.isFileNameDisplayedOnUploadScreen(CDRFileName), true);
+            checkAC("File name is not displayed on Upload screen", importCDRPage.isFileNameDisplayedOnUploadScreen(cdrFileName), true);
             importCDRPage.clickOnButtonUpload();
             importCDRPage.acceptAlertIfPresent();
-            checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen(CDRFileName), true);
+            checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen(cdrFileName), true);
         }
-        importCDRPage.selectFilterInDDByText(CDRFilterName);
-        importCDRPage.doubleClickOnFileIcon(CDRFileName);
-        checkAC("File is not uploaded",importCDRPage.isFileNameDisplayedOnImportCDRScreen(CDRFileName), true);
-        checkAC("Filter name is not correct",importCDRPage.isFilterNameCorrect(CDRFileName,CDRFilterName), true);
-        checkAC("Imported flag is not correct",importCDRPage.isImportedFlagCorrect(CDRFileName,"No"), true);
-        checkAC("Protected flag is not correct",importCDRPage.isProtectedFlagCorrect(CDRFileName,"No"), true);
-        checkAC("Edit button is not present for the file",importCDRPage.isEditButtonPresentForFile(CDRFileName), true);
+        importCDRPage.selectFilterInDDByText(cdrFilterName);
+        importCDRPage.doubleClickOnFileIcon(cdrFileName);
+        importCDRPage.acceptAlertIfPresent();
+        checkAC("Select File screen is not closed",importCDRPage.isSelectFileScreenDisplayed(), false);
+        checkAC("File is not uploaded",importCDRPage.isFileNameDisplayedOnImportCDRScreen(cdrFileName), true);
+        checkAC("Filter name is not correct",importCDRPage.isFilterNameCorrect(cdrFileName,cdrFilterName), true);
+        checkAC("Imported flag is not correct",importCDRPage.isImportedFlagCorrect(cdrFileName,"No"), true);
+        checkAC("Protected flag is not correct",importCDRPage.isProtectedFlagCorrect(cdrFileName,"No"), true);
+        checkAC("Edit button is not present for the file",importCDRPage.isEditButtonPresentForFile(cdrFileName), true);
 
     }
 }
