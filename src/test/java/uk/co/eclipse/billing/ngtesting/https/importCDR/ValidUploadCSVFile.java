@@ -29,8 +29,6 @@ public class ValidUploadCSVFile extends Parent{
         }
         importCDRPage.selectFilterInDDByText(CDRFilterName);
         importCDRPage.doubleClickOnFileIcon(CDRFileName);
-        importCDRPage.acceptAlertIfPresent();
-        checkAC("Select File screen is not closed",importCDRPage.isSelectFileScreenDisplayed(), false);
         checkAC("File is not uploaded",importCDRPage.isFileNameDisplayedOnImportCDRScreen(CDRFileName), true);
         checkAC("Filter name is not correct",importCDRPage.isFilterNameCorrect(CDRFileName,CDRFilterName), true);
         checkAC("Imported flag is not correct",importCDRPage.isImportedFlagCorrect(CDRFileName,"No"), true);

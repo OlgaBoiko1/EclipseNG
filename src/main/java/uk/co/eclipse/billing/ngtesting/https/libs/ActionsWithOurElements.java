@@ -151,6 +151,7 @@ public class ActionsWithOurElements {
 
     public void doubleClickOnElementByXpath(String xpath) {
         try {
+            webDriverWait15.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
             WebElement element = webDriver.findElement(By.xpath(xpath));
             actions.moveToElement(element).click().doubleClick().perform();
             logger.info("Element is double clicked: " + element);
