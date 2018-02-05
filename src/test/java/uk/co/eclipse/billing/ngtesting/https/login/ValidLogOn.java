@@ -9,9 +9,6 @@ public class ValidLogOn extends Parent{
     public String login = Properties.getLogin();
     public String password = Properties.getPassword();
 
-    public ValidLogOn(){
-    }
-
     @Test
     public void validLogOn() {
         loginPage.openLoginPage();
