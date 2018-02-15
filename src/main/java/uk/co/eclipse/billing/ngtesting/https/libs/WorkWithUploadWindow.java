@@ -22,12 +22,15 @@ public class WorkWithUploadWindow {
             robot.delay(6000);
             robot.keyPress(KeyEvent.VK_C);
             robot.keyRelease(KeyEvent.VK_C);
+            logger.info("Enter C letter");
             robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_SEMICOLON);
             robot.keyRelease(KeyEvent.VK_SEMICOLON);
+            logger.info("Enter : letter");
             robot.keyRelease(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
+            logger.info("Enter button pressed");
             robot.delay(6000);
             robot.keyPress(KeyEvent.VK_U);
             robot.keyRelease(KeyEvent.VK_U);
