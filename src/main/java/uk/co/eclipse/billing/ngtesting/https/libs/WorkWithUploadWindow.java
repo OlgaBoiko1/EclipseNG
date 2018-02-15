@@ -21,8 +21,9 @@ public class WorkWithUploadWindow {
             robot = new Robot();
             robot.delay(6000);
             for (int i = 0; i < 6; i++) {
-                robot.keyPress(KeyEvent.VK_SHIFT);
+                robot.keyPress(KeyEvent.VK_TAB);
                 robot.delay(3000);
+                logger.info("Enter tab");
             }
             robot.keyPress(KeyEvent.VK_C);
             robot.keyRelease(KeyEvent.VK_C);
