@@ -167,35 +167,26 @@ public class WorkWithUploadWindow {
 //        }
 //    }
 
-//    public void enterFileNameZIPFile(String string) {
-//        try {
-//            robot = new Robot();
-////            robot.keyPress(46);
-////                robot.delay(10);
-////                robot.keyRelease(46);
-////                robot.delay(10);
-//            robot.keyPress(105-32);
-//            robot.delay(10);
-//            robot.keyRelease(105-32);
-//            robot.delay(10);
-//            }
-//            catch (AWTException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public void enterFileNameZIPFile(String string) {
         try {
             robot = new Robot();
-            int ascii;
-            for (int i = 0; i < string.length(); i++) {
-                ascii = (int) string.charAt(i);
-                robot.delay(10);
-                logger.info(ascii);
-                robot.keyPress(ascii);
-                robot.delay(10);
-                robot.keyRelease(ascii);
-                robot.delay(10);
+//            int ascii;
+//            for (int i = 0; i < string.length(); i++) {
+//                ascii = (int) string.charAt(i);
+//                robot.delay(10);
+//                logger.info(ascii);
+//                robot.keyPress(ascii);
+//                robot.delay(10);
+//                robot.keyRelease(ascii);
+//                robot.delay(10);
+                String val = string.toUpperCase();
+                char[] ch=val.toCharArray();
+                for(int i=0; i < 10; i++) {
+                    robot.keyPress((int)ch[i]);
+                    robot.delay(10);
+                    robot.keyRelease((int)ch[i]);
+                    robot.delay(10);
             }
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
