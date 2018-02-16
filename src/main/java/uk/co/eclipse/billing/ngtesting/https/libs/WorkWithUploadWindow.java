@@ -140,8 +140,8 @@ public class WorkWithUploadWindow {
         try{
             robot = new Robot();
             robot.delay(3000);
-            robot.keyPress(KeyEvent.VK_NUMPAD1);
-            robot.keyRelease(KeyEvent.VK_NUMPAD1);
+            robot.keyPress(KeyEvent.VK_1);
+            robot.keyRelease(KeyEvent.VK_1);
             robot.keyPress(KeyEvent.VK_C);
             robot.keyRelease(KeyEvent.VK_C);
             robot.keyPress(KeyEvent.VK_D);
