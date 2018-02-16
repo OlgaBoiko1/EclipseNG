@@ -27,6 +27,8 @@ public class WorkWithUploadWindow {
 
         boolean SetForegroundWindow(WinDef.HWND hWnd);
 
+        boolean SetFocus(WinDef.HWND hWnd);
+
         WinDef.HWND FindWindow(String winClass, String title);
 
         int SW_SHOW = 1;
@@ -36,8 +38,13 @@ public class WorkWithUploadWindow {
     public void SetActiveWindow(){
         User32 user32 = User32.instance;
         WinDef.HWND hWnd = user32.FindWindow(null, "Open");
-        user32.ShowWindow(hWnd, User32.SW_SHOW);
+        //user32.ShowWindow(hWnd, User32.SW_SHOW);
+        user32.SetFocus(hWnd);
         user32.SetForegroundWindow(hWnd);
+//        char[] windowText = new char[512];
+//        User32.GetWindowText(hWnd, windowText, 512);
+//        String wText = Native.toString(windowText);
+//        logger.info(wText);
         logger.info("Active window is set up");
     }
 
