@@ -57,7 +57,7 @@ public class Parent {
             logger.info("Chrome has been started successfully.");
             webDriver.manage().window().maximize();
         }
-        if (Properties.getBrowser().equalsIgnoreCase("RemoteFF")){
+        else if (Properties.getBrowser().equalsIgnoreCase("RemoteFF")){
             logger.info("FF will be started");
             File fileFF = new File("./drivers/geckodriver.exe");
             System.setProperty("webdriver.gecko.driver", fileFF.getAbsolutePath());
