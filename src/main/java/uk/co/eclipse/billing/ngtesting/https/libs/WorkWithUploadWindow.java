@@ -174,9 +174,9 @@ public class WorkWithUploadWindow {
 //                robot.delay(10);
 //                robot.keyRelease(46);
 //                robot.delay(10);
-            robot.keyPress(105);
+            robot.keyPress(105-32);
             robot.delay(10);
-            robot.keyRelease(105);
+            robot.keyRelease(105-32);
             robot.delay(10);
             }
             catch (AWTException e) {
