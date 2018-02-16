@@ -1,8 +1,5 @@
 package uk.co.eclipse.billing.ngtesting.https.libs;
 
-import com.sun.jna.Native;
-import com.sun.jna.platform.win32.WinDef;
-import com.sun.jna.win32.W32APIOptions;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -17,35 +14,6 @@ public class WorkWithUploadWindow {
     public WorkWithUploadWindow(WebDriver webDriver) {
         this.webDriver = webDriver;
         logger = Logger.getLogger(getClass());
-    }
-
-    public interface User32 extends W32APIOptions {
-
-        User32 instance = (User32) Native.loadLibrary("user32", User32.class, DEFAULT_OPTIONS);
-
-        boolean ShowWindow(WinDef.HWND hWnd, int nCmdShow);
-
-        boolean SetForegroundWindow(WinDef.HWND hWnd);
-
-        boolean SetFocus(WinDef.HWND hWnd);
-
-        WinDef.HWND FindWindow(String winClass, String title);
-
-        int SW_SHOW = 1;
-
-    }
-
-    public void SetActiveWindow(){
-        User32 user32 = User32.instance;
-        WinDef.HWND hWnd = user32.FindWindow(null, "testing1 - Company - ImportCDRs");
-        //user32.ShowWindow(hWnd, User32.SW_SHOW);
-        user32.SetFocus(hWnd);
-        user32.SetForegroundWindow(hWnd);
-//        char[] windowText = new char[512];
-//        User32.GetWindowText(hWnd, windowText, 512);
-//        String wText = Native.toString(windowText);
-//        logger.info(wText);
-        logger.info("Active window is set up");
     }
 
     //Enter path D:\Upload\cdr\
