@@ -136,34 +136,53 @@ public class WorkWithUploadWindow {
     }
 
     //Enter file 1CDR.zip
-    public void enterFileNameZIPFile() {
-        try{
+//    public void enterFileNameZIPFile() {
+//        try{
+//            robot = new Robot();
+//            robot.delay(3000);
+//            robot.keyPress(KeyEvent.VK_1);
+//            robot.keyRelease(KeyEvent.VK_1);
+//            robot.keyPress(KeyEvent.VK_C);
+//            robot.keyRelease(KeyEvent.VK_C);
+//            robot.keyPress(KeyEvent.VK_D);
+//            robot.keyRelease(KeyEvent.VK_D);
+//            robot.keyPress(KeyEvent.VK_R);
+//            robot.keyRelease(KeyEvent.VK_R);
+//            robot.keyPress(KeyEvent.VK_PERIOD);
+//            robot.keyRelease(KeyEvent.VK_PERIOD);
+//            robot.keyPress(KeyEvent.VK_Z);
+//            robot.keyRelease(KeyEvent.VK_Z);
+//            robot.keyPress(KeyEvent.VK_I);
+//            robot.keyRelease(KeyEvent.VK_I);
+//            robot.keyPress(KeyEvent.VK_P);
+//            robot.keyRelease(KeyEvent.VK_P);
+//            robot.delay(500);
+//            robot.keyPress(KeyEvent.VK_ENTER);
+//            robot.keyRelease(KeyEvent.VK_ENTER);
+//            robot.delay(3000);
+//        }
+//        catch(AWTException exception){
+//            logger.error("Can't enter file name" + exception);
+//            Assert.fail("Can't enter file name" + exception);
+//        }
+//    }
+
+    public void enterFileNameZIPFile(String string) {
+        try {
             robot = new Robot();
-            robot.delay(3000);
-            robot.keyPress(KeyEvent.VK_1);
-            robot.keyRelease(KeyEvent.VK_1);
-            robot.keyPress(KeyEvent.VK_C);
-            robot.keyRelease(KeyEvent.VK_C);
-            robot.keyPress(KeyEvent.VK_D);
-            robot.keyRelease(KeyEvent.VK_D);
-            robot.keyPress(KeyEvent.VK_R);
-            robot.keyRelease(KeyEvent.VK_R);
-            robot.keyPress(KeyEvent.VK_PERIOD);
-            robot.keyRelease(KeyEvent.VK_PERIOD);
-            robot.keyPress(KeyEvent.VK_Z);
-            robot.keyRelease(KeyEvent.VK_Z);
-            robot.keyPress(KeyEvent.VK_I);
-            robot.keyRelease(KeyEvent.VK_I);
-            robot.keyPress(KeyEvent.VK_P);
-            robot.keyRelease(KeyEvent.VK_P);
-            robot.delay(500);
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-            robot.delay(3000);
+            int ascii;
+            for (int i = 0; i < string.length(); i++) {
+                ascii = (int) string.charAt(i);
+                robot.keyPress(ascii);
+                robot.delay(10);
+                robot.keyRelease(ascii);
+                robot.delay(10);
+            }
         }
         catch(AWTException exception){
             logger.error("Can't enter file name" + exception);
             Assert.fail("Can't enter file name" + exception);
         }
     }
+
 }
