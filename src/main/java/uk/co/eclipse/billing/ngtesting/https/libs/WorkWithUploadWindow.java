@@ -170,23 +170,40 @@ public class WorkWithUploadWindow {
     public void enterFileNameZIPFile(String string) {
         try {
             robot = new Robot();
-            int ascii;
-            for (int i = 0; i < string.length(); i++) {
-                ascii = (int) string.charAt(i);
+            robot.keyPress(46);
                 robot.delay(10);
-                logger.info(ascii);
-                robot.keyPress(ascii);
+                robot.keyRelease(46);
                 robot.delay(10);
-                robot.keyRelease(ascii);
-                robot.delay(10);
+            robot.keyPress(122);
+            robot.delay(10);
+            robot.keyRelease(122);
+            robot.delay(10);
             }
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-        }
-        catch(AWTException exception){
-            logger.error("Can't enter file name" + exception);
-            Assert.fail("Can't enter file name" + exception);
+            catch (AWTException e) {
+            e.printStackTrace();
         }
     }
+
+//    public void enterFileNameZIPFile(String string) {
+//        try {
+//            robot = new Robot();
+//            int ascii;
+//            for (int i = 0; i < string.length(); i++) {
+//                ascii = (int) string.charAt(i);
+//                robot.delay(10);
+//                logger.info(ascii);
+//                robot.keyPress(ascii);
+//                robot.delay(10);
+//                robot.keyRelease(ascii);
+//                robot.delay(10);
+//            }
+//            robot.keyPress(KeyEvent.VK_ENTER);
+//            robot.keyRelease(KeyEvent.VK_ENTER);
+//        }
+//        catch(AWTException exception){
+//            logger.error("Can't enter file name" + exception);
+//            Assert.fail("Can't enter file name" + exception);
+//        }
+//    }
 
 }
