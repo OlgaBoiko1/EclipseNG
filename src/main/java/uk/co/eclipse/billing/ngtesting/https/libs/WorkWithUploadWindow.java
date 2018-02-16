@@ -173,11 +173,15 @@ public class WorkWithUploadWindow {
             int ascii;
             for (int i = 0; i < string.length(); i++) {
                 ascii = (int) string.charAt(i);
+                robot.delay(10);
+                logger.info(ascii);
                 robot.keyPress(ascii);
                 robot.delay(10);
                 robot.keyRelease(ascii);
                 robot.delay(10);
             }
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
         }
         catch(AWTException exception){
             logger.error("Can't enter file name" + exception);
