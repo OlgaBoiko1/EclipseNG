@@ -68,8 +68,8 @@ public class WorkWithUploadWindow {
         try{
             robot = new Robot();
             robot.delay(3000);
-            robot.keyPress(KeyEvent.VK_NUMPAD1);
-            robot.keyRelease(KeyEvent.VK_NUMPAD1);
+            robot.keyPress(KeyEvent.VK_1);
+            robot.keyRelease(KeyEvent.VK_1);
             robot.keyPress(KeyEvent.VK_B);
             robot.keyRelease(KeyEvent.VK_B);
             robot.keyPress(KeyEvent.VK_T);
@@ -135,7 +135,7 @@ public class WorkWithUploadWindow {
         }
     }
 
-    //Enter file 1CDR.zip which contains 1BT.csv, 1DaisyAllMobile.csv, 1GammaWLR.txt
+    //Enter file 1CDR.zip
     public void enterFileNameZIPFile() {
         try{
             robot = new Robot();
