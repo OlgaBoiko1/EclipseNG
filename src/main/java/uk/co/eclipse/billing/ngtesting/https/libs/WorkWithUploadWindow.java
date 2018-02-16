@@ -170,10 +170,10 @@ public class WorkWithUploadWindow {
     public void enterFileNameZIPFile(String string) {
         try {
             robot = new Robot();
-            robot.keyPress(46);
-                robot.delay(10);
-                robot.keyRelease(46);
-                robot.delay(10);
+//            robot.keyPress(46);
+//                robot.delay(10);
+//                robot.keyRelease(46);
+//                robot.delay(10);
             robot.keyPress(122);
             robot.delay(10);
             robot.keyRelease(122);
