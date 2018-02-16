@@ -38,6 +38,7 @@ public class WorkWithUploadWindow {
     public void SetActiveWindow(){
         User32 user32 = User32.instance;
         WinDef.HWND hWnd = user32.FindWindow(null, "Open");
+        robot.delay(120000);
         //user32.ShowWindow(hWnd, User32.SW_SHOW);
         user32.SetFocus(hWnd);
         user32.SetForegroundWindow(hWnd);
