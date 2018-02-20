@@ -8,6 +8,7 @@ import uk.co.eclipse.billing.ngtesting.https.libs.Properties;
 import uk.co.eclipse.billing.ngtesting.https.libs.SpreadsheetData;
 import uk.co.eclipse.billing.ngtesting.https.parent.Parent;
 
+import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +33,7 @@ public class ValidUploadTXTFile extends Parent {
     }
 
     @Test
-    public void validUploadTXTFile(){
+    public void validUploadTXTFile() throws AWTException {
         loginPage.loginUser(company, login, password);
         homePage.navigateToMenuImportCDR();
         importCDRPage.clickOnButtonSelectCDRFile();

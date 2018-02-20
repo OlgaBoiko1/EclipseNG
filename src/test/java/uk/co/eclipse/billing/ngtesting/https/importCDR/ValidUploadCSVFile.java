@@ -8,6 +8,7 @@ import uk.co.eclipse.billing.ngtesting.https.libs.Properties;
 import uk.co.eclipse.billing.ngtesting.https.libs.SpreadsheetData;
 import uk.co.eclipse.billing.ngtesting.https.parent.Parent;
 
+import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +16,7 @@ import java.util.Collection;
 
 @RunWith(value = Parameterized.class)
 public class ValidUploadCSVFile extends Parent{
+
     String cdrFileName, cdrFilterName;
     public String company = Properties.getCompany();
     public String login = Properties.getLogin();
@@ -32,7 +34,7 @@ public class ValidUploadCSVFile extends Parent{
     }
 
     @Test
-    public void validUploadCSVFile(){
+    public void validUploadCSVFile() throws AWTException {
         loginPage.loginUser(company, login, password);
         homePage.navigateToMenuImportCDR();
         importCDRPage.clickOnButtonSelectCDRFile();

@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.awt.*;
+
 public class ImportCDRPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@id='ctl00_footerPlaceholder_rfeServerFiles_asyncUpload1row0']/span/span")
@@ -54,19 +56,20 @@ public class ImportCDRPage extends ParentPage {
         actionWithOurElements.mouseHoverAndClick(buttonSelect);
     }
 
-    public void selectCSVFileBlizzardTelecom() {
+    public void selectCSVFileBlizzardTelecom() throws AWTException {
         workWithUploadWindow.enterPathToCDRFolder();
         workWithUploadWindow.enterFileNameCSVBlizzardTelecom();
     }
 
-    public void selectTXTFileGammaWLR() {
+    public void selectTXTFileGammaWLR() throws AWTException {
         workWithUploadWindow.enterPathToCDRFolder();
         workWithUploadWindow.enterFileNameTXTGammaWLR();
     }
 
-    public void selectCorrectZIPFile() {
+    public void selectCorrectZIPFile(String zipFileName) {
         workWithUploadWindow.enterPathToCDRFolder();
-        workWithUploadWindow.enterFileNameZIPFile("111201709CDR.csv");
+        //workWithUploadWindow.enterFileNameZIPFile();
+        robotKeyEvents.typeText(zipFileName);
     }
 
     public void clickOnButtonUpload(){
@@ -113,28 +116,28 @@ public class ImportCDRPage extends ParentPage {
         return actionWithOurElements.isElementPresent(".//td[text()='"+fileName+"']/preceding-sibling::td[2]/a");
     }
 
-    public void uploadFileBlizzardTelecom() {
+    public void uploadFileBlizzardTelecom() throws AWTException {
         clickOnButtonSelectFileScreenUpload();
         mouseHoverAndClickOnButtonSelect();
         selectCSVFileBlizzardTelecom();
         clickOnButtonUpload();
     }
 
-    public void uploadFileGammaWLR() {
+    public void uploadFileGammaWLR() throws AWTException {
         clickOnButtonSelectFileScreenUpload();
         mouseHoverAndClickOnButtonSelect();
         selectTXTFileGammaWLR();
         clickOnButtonUpload();
     }
 
-    public void uploadCorrectZIPFile() {
+    public void uploadCorrectZIPFile(String zipFileName){
         clickOnButtonSelectFileScreenUpload();
         mouseHoverAndClickOnButtonSelect();
-        selectCorrectZIPFile();
+        selectCorrectZIPFile(zipFileName);
         clickOnButtonUpload();
     }
 
-    public void selectFile(String fileName, String filterName) {
+    public void selectFile(String fileName, String filterName) throws AWTException {
         clickOnButtonSelectCDRFile();
         if (!isFileNameDisplayedOnSelectFileScreen(fileName)) {
             if (filterName.equals("Blizzard Telecom (Union Str. aBILLity)")){
