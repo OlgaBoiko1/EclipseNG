@@ -68,7 +68,7 @@ public class ImportCDRPage extends ParentPage {
 
     public void selectCorrectZIPFile() {
         workWithUploadWindow.enterPathToCDRFolder();
-        workWithUploadWindow.enterFileNameZIPFile();
+        //workWithUploadWindow.enterFileNameZIPFile();
         //robotKeyEvents.typeText("c");
     }
 
