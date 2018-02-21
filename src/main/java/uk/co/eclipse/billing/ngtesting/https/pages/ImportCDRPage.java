@@ -58,18 +58,18 @@ public class ImportCDRPage extends ParentPage {
 
     public void selectCSVFileBlizzardTelecom() throws AWTException {
         workWithUploadWindow.enterPathToCDRFolder();
-        workWithUploadWindow.enterFileNameCSVBlizzardTelecom();
+        //workWithUploadWindow.enterFileNameCSVBlizzardTelecom();
     }
 
     public void selectTXTFileGammaWLR() throws AWTException {
         workWithUploadWindow.enterPathToCDRFolder();
-        workWithUploadWindow.enterFileNameTXTGammaWLR();
+        //workWithUploadWindow.enterFileNameTXTGammaWLR();
     }
 
-    public void selectCorrectZIPFile(String zipFileName) {
+    public void selectCorrectZIPFile() {
         workWithUploadWindow.enterPathToCDRFolder();
         workWithUploadWindow.enterFileNameZIPFile();
-        //robotKeyEvents.typeText(zipFileName);
+        //robotKeyEvents.typeText("c");
     }
 
     public void clickOnButtonUpload(){
@@ -130,10 +130,10 @@ public class ImportCDRPage extends ParentPage {
         clickOnButtonUpload();
     }
 
-    public void uploadCorrectZIPFile(String zipFileName){
+    public void uploadCorrectZIPFile(){
         clickOnButtonSelectFileScreenUpload();
         mouseHoverAndClickOnButtonSelect();
-        selectCorrectZIPFile(zipFileName);
+        selectCorrectZIPFile();
         clickOnButtonUpload();
     }
 

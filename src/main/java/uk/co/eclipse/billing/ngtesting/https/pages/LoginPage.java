@@ -52,7 +52,7 @@ public class LoginPage extends ParentPage{
         enterPasswordToInput(password);
         clickOnLoginButton();
         utils.myAssertTrue("Can't work with the Home Page", homePage.isHeaderHomePageCorrect());
-        //homePage.confirmUpdateScreenIfExistForUser(login);
+        homePage.confirmUpdateScreenIfExistForUser(login);
     }
 
 }

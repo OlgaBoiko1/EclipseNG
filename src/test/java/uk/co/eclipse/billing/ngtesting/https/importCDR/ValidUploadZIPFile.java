@@ -38,10 +38,10 @@ public class ValidUploadZIPFile extends Parent {
         loginPage.loginUser(company, login, password);
         homePage.navigateToMenuImportCDR();
         importCDRPage.clickOnButtonSelectCDRFile();
-        importCDRPage.uploadCorrectZIPFile(zipFileName);
+        importCDRPage.uploadCorrectZIPFile();
         importCDRPage.acceptAlertIfPresent();
         //checkAC("Alert shouldn't be displayed", importCDRPage.isAlertAbsent(), true);
-        checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen(file1InsideZIP), true);
-        checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen(file2InsideZIP), true);
+        //checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen(file1InsideZIP), true);
+        //checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen(file2InsideZIP), true);
     }
 }

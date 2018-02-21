@@ -22,7 +22,7 @@ public class ParentPage{
         this.webDriver = webDriver;
         logger = Logger.getLogger(getClass());
         actionWithOurElements = new ActionsWithOurElements(webDriver);
-        workWithUploadWindow = new WorkWithUploadWindow(webDriver);
+        workWithUploadWindow = new WorkWithUploadWindow();
         dataBaseData = new DataBaseData(webDriver);
         utils = new Utils();
         robotKeyEvents = new RobotKeyEvents(webDriver);

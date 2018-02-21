@@ -8,8 +8,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class RobotKeyEvents {
-        Logger logger;
-        Robot robot;
+    Logger logger;
+    Robot robot;
     WebDriver webDriver;
 
     public RobotKeyEvents(WebDriver webDriver){
@@ -23,21 +23,21 @@ public class RobotKeyEvents {
         }
     }
 
-    public void typeText(CharSequence characters){
+    public void typeText(String string){
         try {
-                int length = characters.length();
+                int length = string.length();
                 for (int i = 0; i < length; i++)
                     {
-                        char character = characters.charAt(i);
+                        char character = string.charAt(i);
                         typeCharacter(character);
                     }
                 robot.delay(3000);
-                logger.info(characters + " have been entered");
+                logger.info(string + " have been entered");
                 pressEnterButton();
                 robot.delay(3000);
         } catch (Exception e) {
-            logger.error("Can't type text: '" + characters + " because: " + e);
-            Assert.fail("Can't type text: '" + characters + " because: " + e);
+            logger.error("Can't type text: '" + string + " because: " + e);
+            Assert.fail("Can't type text: '" + string + " because: " + e);
         }
     }
 
