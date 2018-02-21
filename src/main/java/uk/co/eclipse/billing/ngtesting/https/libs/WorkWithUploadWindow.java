@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class WorkWithUploadWindow {
+    static Robot robot;
     Logger logger = Logger.getLogger(getClass());
 
     public interface User32 extends W32APIOptions {
@@ -31,10 +32,20 @@ public class WorkWithUploadWindow {
         logger.info("Active window is set up");
     }
 
-    public void enterPathToCDRFolder() {
+    public void chooseZIPFile() {
         try {
-            Robot robot = new Robot();
+            robot = new Robot();
             SetActiveWindow();
+            enterPathToCDRFolder();
+            enterFileNameZIPFile();
+        } catch (AWTException exception) {
+            logger.error("Can't enter file name" + exception);
+            Assert.fail("Can't enter file name" + exception);
+        }
+    }
+
+
+    public void enterPathToCDRFolder(){
             robot.delay(2000);
             robot.keyPress(KeyEvent.VK_C);
             robot.keyRelease(KeyEvent.VK_C);
@@ -72,15 +83,10 @@ public class WorkWithUploadWindow {
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
             robot.delay(3000);
-        } catch (AWTException e) {
-            Assert.fail("" + e);
-        }
     }
 
     //Enter file 1CDR.zip which contains 1BT.csv, 1DaisyAllMobile.csv, 1GammaWLR.txt
     public void enterFileNameZIPFile() {
-        try{
-            Robot robot = new Robot();
             robot.delay(3000);
             robot.keyPress(KeyEvent.VK_NUMPAD1);
             robot.keyRelease(KeyEvent.VK_NUMPAD1);
@@ -102,10 +108,6 @@ public class WorkWithUploadWindow {
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
             robot.delay(3000);
-        }
-        catch(AWTException exception){
-            logger.error("Can't enter file name" + exception);
-            Assert.fail("Can't enter file name" + exception);
-        }
+
     }
 }
