@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.awt.*;
+
 public class ImportCDRPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@id='ctl00_footerPlaceholder_rfeServerFiles_asyncUpload1row0']/span/span")
@@ -54,12 +56,12 @@ public class ImportCDRPage extends ParentPage {
         actionWithOurElements.mouseHoverAndClick(buttonSelect);
     }
 
-    public void selectCSVFileBlizzardTelecom() {
+    public void selectCSVFileBlizzardTelecom(){
         workWithUploadWindow.enterPathToCDRFolder();
         workWithUploadWindow.enterFileNameCSVBlizzardTelecom();
     }
 
-    public void selectTXTFileGammaWLR() {
+    public void selectTXTFileGammaWLR(){
         workWithUploadWindow.enterPathToCDRFolder();
         workWithUploadWindow.enterFileNameTXTGammaWLR();
     }
@@ -67,6 +69,7 @@ public class ImportCDRPage extends ParentPage {
     public void selectCorrectZIPFile() {
         workWithUploadWindow.enterPathToCDRFolder();
         workWithUploadWindow.enterFileNameZIPFile();
+        //robotKeyEvents.typeText("c");
     }
 
     public void clickOnButtonUpload(){
@@ -113,28 +116,28 @@ public class ImportCDRPage extends ParentPage {
         return actionWithOurElements.isElementPresent(".//td[text()='"+fileName+"']/preceding-sibling::td[2]/a");
     }
 
-    public void uploadFileBlizzardTelecom() {
+    public void uploadFileBlizzardTelecom(){
         clickOnButtonSelectFileScreenUpload();
         mouseHoverAndClickOnButtonSelect();
         selectCSVFileBlizzardTelecom();
         clickOnButtonUpload();
     }
 
-    public void uploadFileGammaWLR() {
+    public void uploadFileGammaWLR(){
         clickOnButtonSelectFileScreenUpload();
         mouseHoverAndClickOnButtonSelect();
         selectTXTFileGammaWLR();
         clickOnButtonUpload();
     }
 
-    public void uploadCorrectZIPFile() {
+    public void uploadCorrectZIPFile(){
         clickOnButtonSelectFileScreenUpload();
         mouseHoverAndClickOnButtonSelect();
         selectCorrectZIPFile();
         clickOnButtonUpload();
     }
 
-    public void selectFile(String fileName, String filterName) {
+    public void selectFile(String fileName, String filterName){
         clickOnButtonSelectCDRFile();
         if (!isFileNameDisplayedOnSelectFileScreen(fileName)) {
             if (filterName.equals("Blizzard Telecom (Union Str. aBILLity)")){

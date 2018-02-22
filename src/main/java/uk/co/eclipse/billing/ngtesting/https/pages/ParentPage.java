@@ -3,10 +3,9 @@ package uk.co.eclipse.billing.ngtesting.https.pages;
 import org.apache.log4j.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import uk.co.eclipse.billing.ngtesting.https.libs.ActionsWithOurElements;
-import uk.co.eclipse.billing.ngtesting.https.libs.DataBaseData;
-import uk.co.eclipse.billing.ngtesting.https.libs.Utils;
-import uk.co.eclipse.billing.ngtesting.https.libs.WorkWithUploadWindow;
+import uk.co.eclipse.billing.ngtesting.https.libs.*;
+
+import java.io.IOException;
 
 
 public class ParentPage{
@@ -15,26 +14,31 @@ public class ParentPage{
     ActionsWithOurElements actionWithOurElements;
     WorkWithUploadWindow workWithUploadWindow;
     DataBaseData dataBaseData;
-    Utils utils = new Utils();
+    Utils utils;
+    RobotKeyEvents robotKeyEvents;
+    String baseURL;
 
-    public ParentPage(WebDriver webDriver) {
+    public ParentPage(WebDriver webDriver){
         this.webDriver = webDriver;
         logger = Logger.getLogger(getClass());
         actionWithOurElements = new ActionsWithOurElements(webDriver);
-        workWithUploadWindow = new WorkWithUploadWindow(webDriver);
+        workWithUploadWindow = new WorkWithUploadWindow();
         dataBaseData = new DataBaseData(webDriver);
+        utils = new Utils();
+        robotKeyEvents = new RobotKeyEvents(webDriver);
 
         PageFactory.initElements(webDriver, this);
+        baseURL = ConfigData.getCfgValue("BASE_URL");
     }
 
-    public void open(String url){
+    public void open(String shortUrl){
             try{
-                webDriver.get(url);
-                logger.info("Page was opened: " + url);
+                webDriver.get(baseURL+shortUrl);
+                logger.info("Page was opened: " + baseURL+shortUrl);
             }
             catch (Exception e){
-                logger.error("Page can't be opened " + url);
-                utils.myAssertFail("Page can't be opened " + url);
+                logger.error("Page can't be opened " + baseURL+shortUrl);
+                utils.myAssertFail("Page can't be opened " + baseURL+shortUrl);
             }
     }
 

@@ -15,6 +15,7 @@ import java.util.Collection;
 
 @RunWith(value = Parameterized.class)
 public class ValidUploadCSVFile extends Parent{
+
     String cdrFileName, cdrFilterName;
     public String company = Properties.getCompany();
     public String login = Properties.getLogin();
