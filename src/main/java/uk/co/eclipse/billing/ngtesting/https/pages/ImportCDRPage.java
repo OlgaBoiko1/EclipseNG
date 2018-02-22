@@ -56,14 +56,14 @@ public class ImportCDRPage extends ParentPage {
         actionWithOurElements.mouseHoverAndClick(buttonSelect);
     }
 
-    public void selectCSVFileBlizzardTelecom() throws AWTException {
+    public void selectCSVFileBlizzardTelecom(){
         workWithUploadWindow.enterPathToCDRFolder();
-        //workWithUploadWindow.enterFileNameCSVBlizzardTelecom();
+        workWithUploadWindow.enterFileNameCSVBlizzardTelecom();
     }
 
-    public void selectTXTFileGammaWLR() throws AWTException {
+    public void selectTXTFileGammaWLR(){
         workWithUploadWindow.enterPathToCDRFolder();
-        //workWithUploadWindow.enterFileNameTXTGammaWLR();
+        workWithUploadWindow.enterFileNameTXTGammaWLR();
     }
 
     public void selectCorrectZIPFile() {
@@ -116,14 +116,14 @@ public class ImportCDRPage extends ParentPage {
         return actionWithOurElements.isElementPresent(".//td[text()='"+fileName+"']/preceding-sibling::td[2]/a");
     }
 
-    public void uploadFileBlizzardTelecom() throws AWTException {
+    public void uploadFileBlizzardTelecom(){
         clickOnButtonSelectFileScreenUpload();
         mouseHoverAndClickOnButtonSelect();
         selectCSVFileBlizzardTelecom();
         clickOnButtonUpload();
     }
 
-    public void uploadFileGammaWLR() throws AWTException {
+    public void uploadFileGammaWLR(){
         clickOnButtonSelectFileScreenUpload();
         mouseHoverAndClickOnButtonSelect();
         selectTXTFileGammaWLR();
@@ -137,7 +137,7 @@ public class ImportCDRPage extends ParentPage {
         clickOnButtonUpload();
     }
 
-    public void selectFile(String fileName, String filterName) throws AWTException {
+    public void selectFile(String fileName, String filterName){
         clickOnButtonSelectCDRFile();
         if (!isFileNameDisplayedOnSelectFileScreen(fileName)) {
             if (filterName.equals("Blizzard Telecom (Union Str. aBILLity)")){

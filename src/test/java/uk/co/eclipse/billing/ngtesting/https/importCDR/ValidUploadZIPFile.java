@@ -41,7 +41,7 @@ public class ValidUploadZIPFile extends Parent {
         importCDRPage.uploadCorrectZIPFile();
         importCDRPage.acceptAlertIfPresent();
         //checkAC("Alert shouldn't be displayed", importCDRPage.isAlertAbsent(), true);
-        //checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen(file1InsideZIP), true);
-        //checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen(file2InsideZIP), true);
+        checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen(file1InsideZIP), true);
+        checkAC("File name is not displayed on Select File screen", importCDRPage.isFileNameDisplayedOnSelectFileScreen(file2InsideZIP), true);
     }
 }

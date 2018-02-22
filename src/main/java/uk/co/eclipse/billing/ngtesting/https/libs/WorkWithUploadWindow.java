@@ -11,10 +11,11 @@ import java.awt.event.KeyEvent;
 
 public class WorkWithUploadWindow {
     Logger logger = Logger.getLogger(getClass());
+    Robot robot;
 
     public interface User32 extends W32APIOptions {
         User32 instance = (User32) Native.loadLibrary("user32", User32.class, DEFAULT_OPTIONS);
-        boolean ShowWindow(WinDef.HWND hWnd, int nCmdShow);
+        //boolean ShowWindow(WinDef.HWND hWnd, int nCmdShow);
         boolean SetForegroundWindow(WinDef.HWND hWnd);
         boolean SetFocus(WinDef.HWND hWnd);
         WinDef.HWND FindWindow(String winClass, String title);
@@ -32,7 +33,7 @@ public class WorkWithUploadWindow {
 
     public void enterPathToCDRFolder() {
         try {
-            Robot robot = new Robot();
+            robot = new Robot();
             SetActiveWindow();
             robot.delay(2000);
             robot.keyPress(KeyEvent.VK_C);
@@ -79,7 +80,7 @@ public class WorkWithUploadWindow {
     //Enter file 1CDR.zip which contains 1BT.csv, 1DaisyAllMobile.csv, 1GammaWLR.txt
     public void enterFileNameZIPFile() {
         try{
-            Robot robot = new Robot();
+            robot = new Robot();
             SetActiveWindow();
             robot.delay(3000);
             robot.keyPress(KeyEvent.VK_NUMPAD1);
@@ -108,4 +109,79 @@ public class WorkWithUploadWindow {
             Assert.fail("Can't enter file name" + exception);
         }
     }
+
+    //Enter file 1BT.csv
+    public void enterFileNameCSVBlizzardTelecom(){
+        try{
+            robot = new Robot();
+            SetActiveWindow();
+            robot.delay(3000);
+            robot.keyPress(KeyEvent.VK_1);
+            robot.keyRelease(KeyEvent.VK_1);
+            robot.keyPress(KeyEvent.VK_B);
+            robot.keyRelease(KeyEvent.VK_B);
+            robot.keyPress(KeyEvent.VK_T);
+            robot.keyRelease(KeyEvent.VK_T);
+            robot.keyPress(KeyEvent.VK_PERIOD);
+            robot.keyRelease(KeyEvent.VK_PERIOD);
+            robot.keyPress(KeyEvent.VK_C);
+            robot.keyRelease(KeyEvent.VK_C);
+            robot.keyPress(KeyEvent.VK_S);
+            robot.keyRelease(KeyEvent.VK_S);
+            robot.keyPress(KeyEvent.VK_V);
+            robot.keyRelease(KeyEvent.VK_V);
+            robot.delay(1000);
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+            robot.delay(3000);
+        }
+        catch (AWTException exception){
+            logger.error("Can't enter file name" + exception);
+            Assert.fail("Can't enter file name" + exception);
+        }
+    }
+
+    //Enter file 1GammaWLR.txt
+    public void enterFileNameTXTGammaWLR(){
+        try{
+            robot = new Robot();
+            SetActiveWindow();
+            robot.delay(3000);
+            robot.keyPress(KeyEvent.VK_NUMPAD1);
+            robot.keyRelease(KeyEvent.VK_NUMPAD1);
+            robot.keyPress(KeyEvent.VK_G);
+            robot.keyRelease(KeyEvent.VK_G);
+            robot.keyPress(KeyEvent.VK_A);
+            robot.keyRelease(KeyEvent.VK_A);
+            robot.keyPress(KeyEvent.VK_M);
+            robot.keyRelease(KeyEvent.VK_M);
+            robot.keyPress(KeyEvent.VK_M);
+            robot.keyRelease(KeyEvent.VK_M);
+            robot.keyPress(KeyEvent.VK_A);
+            robot.keyRelease(KeyEvent.VK_A);
+            robot.keyPress(KeyEvent.VK_W);
+            robot.keyRelease(KeyEvent.VK_W);
+            robot.keyPress(KeyEvent.VK_L);
+            robot.keyRelease(KeyEvent.VK_L);
+            robot.keyPress(KeyEvent.VK_R);
+            robot.keyRelease(KeyEvent.VK_R);
+            robot.keyPress(KeyEvent.VK_PERIOD);
+            robot.keyRelease(KeyEvent.VK_PERIOD);
+            robot.keyPress(KeyEvent.VK_T);
+            robot.keyRelease(KeyEvent.VK_T);
+            robot.keyPress(KeyEvent.VK_X);
+            robot.keyRelease(KeyEvent.VK_X);
+            robot.keyPress(KeyEvent.VK_T);
+            robot.keyRelease(KeyEvent.VK_T);
+            robot.delay(1000);
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+            robot.delay(3000);
+        }
+        catch (AWTException exception){
+            logger.error("Can't enter file name" + exception);
+            Assert.fail("Can't enter file name" + exception);
+        }
+    }
+
 }
