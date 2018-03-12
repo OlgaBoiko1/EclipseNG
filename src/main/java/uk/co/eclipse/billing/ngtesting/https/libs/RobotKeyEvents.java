@@ -1,10 +1,14 @@
 package uk.co.eclipse.billing.ngtesting.https.libs;
 
+import com.sun.jna.Native;
+import com.sun.jna.platform.win32.WinDef;
+import com.sun.jna.win32.W32APIOptions;
 import org.junit.Assert;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 
 public class RobotKeyEvents {
@@ -23,13 +27,57 @@ public class RobotKeyEvents {
         }
     }
 
+    public static void setClipboardData(String string) {
+        StringSelection stringSelection = new StringSelection(string);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+    }
+
+    public interface User32 extends W32APIOptions {
+        WorkWithUploadWindow.User32 instance = (WorkWithUploadWindow.User32) Native.loadLibrary("user32", WorkWithUploadWindow.User32.class, DEFAULT_OPTIONS);
+        //boolean ShowWindow(WinDef.HWND hWnd, int nCmdShow);
+        boolean SetForegroundWindow(WinDef.HWND hWnd);
+        boolean SetFocus(WinDef.HWND hWnd);
+        WinDef.HWND FindWindow(String winClass, String title);
+        int SW_SHOW = 1;
+    }
+
+    public void SetActiveWindow(){
+        WorkWithUploadWindow.User32 user32 = WorkWithUploadWindow.User32.instance;
+        WinDef.HWND hWnd = user32.FindWindow(null, "Open");
+        //user32.ShowWindow(hWnd, User32.SW_SHOW);
+        user32.SetForegroundWindow(hWnd);
+        user32.SetFocus(hWnd);
+        logger.info("Active window is set up");
+    }
+
+    public void enterPathToCDRFolder(){
+        try{ SetActiveWindow();
+            setClipboardData("C:\\Upload\\cdr");
+            robot.delay(4000);
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.keyPress(KeyEvent.VK_V);
+            robot.keyRelease(KeyEvent.VK_V);
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+            robot.delay(4000);
+            pressEnterButton();
+            robot.delay(3000);
+        }
+        catch (Exception e){
+            logger.error("Can't enter path to CDR folder" + e);
+            Assert.fail("Can't enter path to CDR folder" + e);
+        }
+    }
+
     public void typeText(String string){
         try {
+                SetActiveWindow();
+                robot.delay(3000);
                 int length = string.length();
                 for (int i = 0; i < length; i++)
                     {
                         char character = string.charAt(i);
                         typeCharacter(character);
+                        robot.delay(2000);
                     }
                 robot.delay(3000);
                 logger.info(string + " have been entered");
@@ -45,6 +93,7 @@ public class RobotKeyEvents {
     {
         try{
             robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
             logger.info("Enter button has been pressed");
 
         }

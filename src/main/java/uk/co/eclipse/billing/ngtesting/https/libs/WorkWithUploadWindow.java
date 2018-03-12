@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class WorkWithUploadWindow {
+    RobotKeyEvents robotKeyEvents;
     Logger logger = Logger.getLogger(getClass());
     Robot robot;
 
@@ -35,10 +36,10 @@ public class WorkWithUploadWindow {
         try {
             robot = new Robot();
             SetActiveWindow();
+            robot.delay(3000);
+            robotKeyEvents.typeText("C");
             robot.delay(2000);
-            robot.keyPress(KeyEvent.VK_C);
-            robot.keyRelease(KeyEvent.VK_C);
-            robot.delay(2000);
+//            robotKeyEvents.typeText(":");
             robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_SEMICOLON);
             robot.keyRelease(KeyEvent.VK_SEMICOLON);

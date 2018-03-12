@@ -57,8 +57,11 @@ public class ImportCDRPage extends ParentPage {
     }
 
     public void selectCSVFileBlizzardTelecom(){
-        workWithUploadWindow.enterPathToCDRFolder();
-        workWithUploadWindow.enterFileNameCSVBlizzardTelecom();
+        robotKeyEvents.enterPathToCDRFolder();
+        robotKeyEvents.typeText("1BT.csv");
+//        robotKeyEvents.typeText("c:");
+//        workWithUploadWindow.enterPathToCDRFolder();
+//        workWithUploadWindow.enterFileNameCSVBlizzardTelecom();
     }
 
     public void selectTXTFileGammaWLR(){
@@ -69,7 +72,6 @@ public class ImportCDRPage extends ParentPage {
     public void selectCorrectZIPFile() {
         workWithUploadWindow.enterPathToCDRFolder();
         workWithUploadWindow.enterFileNameZIPFile();
-        //robotKeyEvents.typeText("c");
     }
 
     public void clickOnButtonUpload(){

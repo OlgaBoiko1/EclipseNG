@@ -10,10 +10,10 @@ import uk.co.eclipse.billing.ngtesting.https.login.ValidLogOn;
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
         {
-                ValidLogOn.class,
+//                ValidLogOn.class,
                 ValidUploadCSVFile.class,
-                ValidUploadTXTFile.class,
-                ValidUploadZIPFile.class
+//                ValidUploadTXTFile.class,
+//                ValidUploadZIPFile.class
         }
 )
 
