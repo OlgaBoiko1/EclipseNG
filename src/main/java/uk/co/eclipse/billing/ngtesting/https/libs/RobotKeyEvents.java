@@ -70,7 +70,7 @@ public class RobotKeyEvents {
 
     public void enterPathToCDRFolder() {
         try {
-            //robot = new Robot();
+            robot = new Robot();
             SetActiveWindow();
             robot.delay(3000);
             robot.keyPress(KeyEvent.VK_C);
@@ -109,7 +109,7 @@ public class RobotKeyEvents {
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
             robot.delay(3000);
-        } catch (Exception e) {
+        } catch (AWTException e) {
             Assert.fail("" + e);
         }
     }
