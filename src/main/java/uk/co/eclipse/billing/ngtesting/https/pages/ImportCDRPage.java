@@ -57,7 +57,8 @@ public class ImportCDRPage extends ParentPage {
     }
 
     public void selectCSVFileBlizzardTelecom(){
-        robotKeyEvents.enterPathToCDRFolder();
+        //robotKeyEvents.enterPathToCDRFolder();
+        robotKeyEvents.typeText("C:\\Upload\\cdr");
         robotKeyEvents.typeText("1BT.csv");
 //        robotKeyEvents.typeText("c:");
 //        workWithUploadWindow.enterPathToCDRFolder();

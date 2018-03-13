@@ -50,23 +50,23 @@ public class RobotKeyEvents {
         logger.info("Active window is set up");
     }
 
-    public void enterPathToCDRFolder(){
-        try{ SetActiveWindow();
-            setClipboardData("C:\\Upload\\cdr");
-            robot.delay(4000);
-            robot.keyPress(KeyEvent.VK_CONTROL);
-            robot.keyPress(KeyEvent.VK_V);
-            robot.keyRelease(KeyEvent.VK_V);
-            robot.keyRelease(KeyEvent.VK_CONTROL);
-            robot.delay(4000);
-            pressEnterButton();
-            robot.delay(3000);
-        }
-        catch (Exception e){
-            logger.error("Can't enter path to CDR folder" + e);
-            Assert.fail("Can't enter path to CDR folder" + e);
-        }
-    }
+//    public void enterPathToCDRFolder(){
+//        try{ SetActiveWindow();
+//            setClipboardData("C:\\Upload\\cdr");
+//            robot.delay(4000);
+//            robot.keyPress(KeyEvent.VK_CONTROL);
+//            robot.keyPress(KeyEvent.VK_V);
+//            robot.keyRelease(KeyEvent.VK_V);
+//            robot.keyRelease(KeyEvent.VK_CONTROL);
+//            robot.delay(4000);
+//            pressEnterButton();
+//            robot.delay(3000);
+//        }
+//        catch (Exception e){
+//            logger.error("Can't enter path to CDR folder" + e);
+//            Assert.fail("Can't enter path to CDR folder" + e);
+//        }
+//    }
 
     public void typeText(String string){
         try {
@@ -77,6 +77,7 @@ public class RobotKeyEvents {
                     {
                         char character = string.charAt(i);
                         typeCharacter(character);
+                        logger.info(character);
                         robot.delay(2000);
                     }
                 robot.delay(3000);
