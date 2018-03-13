@@ -42,7 +42,7 @@ public class ValidUploadCSVFile extends Parent{
             importCDRPage.clickOnButtonSelectFileScreenUpload();
             checkAC("Upload screen is not displayed", importCDRPage.isUploadScreenDisplayed(), true);
             importCDRPage.mouseHoverAndClickOnButtonSelect();
-            importCDRPage.enterPathToCDRFolder("CCCC");
+            importCDRPage.enterPathToCDRFolder();
             importCDRPage.enterFileName(cdrFileName);
             checkAC("File name is not displayed on Upload screen", importCDRPage.isFileNameDisplayedOnUploadScreen(cdrFileName), true);
             importCDRPage.clickOnButtonUpload();
