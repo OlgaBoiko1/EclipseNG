@@ -56,8 +56,8 @@ public class ImportCDRPage extends ParentPage {
         actionWithOurElements.mouseHoverAndClick(buttonSelect);
     }
 
-    public void enterPathToCDRFolder() {
-        robotKeyEvents.typeText("CCCC");
+    public void enterPathToCDRFolder(String path) {
+        robotKeyEvents.typeText(path);
     }
 
     public void enterFileName(String fileName) {
