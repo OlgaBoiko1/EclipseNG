@@ -163,10 +163,14 @@ public class ActionsWithOurElements {
 
     public boolean isAlertAbsent() {
         try {
-            webDriverWait15.until(ExpectedConditions.alertIsPresent());
-            logger.info("Following alert appears: " + webDriver.switchTo().alert().getText());
-            return false;
+            if (webDriverWait15.until(ExpectedConditions.alertIsPresent())==null)
+                return true;
+            else {
+                logger.info("Following alert appears: " + webDriver.switchTo().alert().getText());
+                return false;
+            }
         } catch (Exception e) {
+            logger.error("Exception occurs: " + e);
             return true;
         }
     }

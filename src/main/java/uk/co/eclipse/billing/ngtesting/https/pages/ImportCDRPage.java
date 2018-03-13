@@ -57,11 +57,11 @@ public class ImportCDRPage extends ParentPage {
     }
 
     public void enterPathToCDRFolder() {
-        robotKeyEvents.typeText("C:\\Upload\\cdr");
+        robotKeyEvents.typeText(pathToCDRFolder);
     }
 
-    public void enterFileName() {
-        robotKeyEvents.typeText("1BT.csv");
+    public void enterFileName(String fileName) {
+        robotKeyEvents.typeText(fileName);
     }
 
     public void selectTXTFileGammaWLR(){
