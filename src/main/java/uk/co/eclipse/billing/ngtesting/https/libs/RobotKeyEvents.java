@@ -70,24 +70,31 @@ public class RobotKeyEvents {
 
     public void typeText(String string){
         try {
-                SetActiveWindow();
-                robot.delay(3000);
-                int length = string.length();
+            SetActiveWindow();
+            wait3Second();
+            int length = string.length();
                 for (int i = 0; i < length; i++)
                     {
                         char character = string.charAt(i);
                         typeCharacter(character);
-                        logger.info(character);
-                        robot.delay(2000);
+                        waitABit(1000);
                     }
-                robot.delay(3000);
-                logger.info(string + " have been entered");
-                pressEnterButton();
-                robot.delay(3000);
+            wait3Second();
+            logger.info(string + " have been entered");
+            pressEnterButton();
+            wait3Second();
         } catch (Exception e) {
             logger.error("Can't type text: '" + string + " because: " + e);
             Assert.fail("Can't type text: '" + string + " because: " + e);
         }
+    }
+
+    private void waitABit(int timeMS) {
+        robot.delay(timeMS);
+    }
+
+    private void wait3Second() {
+        robot.delay(3000);
     }
 
     public void pressEnterButton()

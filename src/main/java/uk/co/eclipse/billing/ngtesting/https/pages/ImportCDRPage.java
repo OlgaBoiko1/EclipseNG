@@ -56,13 +56,12 @@ public class ImportCDRPage extends ParentPage {
         actionWithOurElements.mouseHoverAndClick(buttonSelect);
     }
 
-    public void selectCSVFileBlizzardTelecom(){
-        //robotKeyEvents.enterPathToCDRFolder();
+    public void enterPathToCDRFolder() {
         robotKeyEvents.typeText("C:\\Upload\\cdr");
+    }
+
+    public void enterFileName() {
         robotKeyEvents.typeText("1BT.csv");
-//        robotKeyEvents.typeText("c:");
-//        workWithUploadWindow.enterPathToCDRFolder();
-//        workWithUploadWindow.enterFileNameCSVBlizzardTelecom();
     }
 
     public void selectTXTFileGammaWLR(){
@@ -119,41 +118,25 @@ public class ImportCDRPage extends ParentPage {
         return actionWithOurElements.isElementPresent(".//td[text()='"+fileName+"']/preceding-sibling::td[2]/a");
     }
 
-    public void uploadFileBlizzardTelecom(){
-        clickOnButtonSelectFileScreenUpload();
-        mouseHoverAndClickOnButtonSelect();
-        selectCSVFileBlizzardTelecom();
-        clickOnButtonUpload();
-    }
-
-    public void uploadFileGammaWLR(){
-        clickOnButtonSelectFileScreenUpload();
-        mouseHoverAndClickOnButtonSelect();
-        selectTXTFileGammaWLR();
-        clickOnButtonUpload();
-    }
+//    public void uploadFileBlizzardTelecom(){
+//        clickOnButtonSelectFileScreenUpload();
+//        mouseHoverAndClickOnButtonSelect();
+//        selectCSVFileBlizzardTelecom();
+//        clickOnButtonUpload();
+//    }
+//
+//    public void uploadFileGammaWLR(){
+//        clickOnButtonSelectFileScreenUpload();
+//        mouseHoverAndClickOnButtonSelect();
+//        selectTXTFileGammaWLR();
+//        clickOnButtonUpload();
+//    }
 
     public void uploadCorrectZIPFile(){
         clickOnButtonSelectFileScreenUpload();
         mouseHoverAndClickOnButtonSelect();
         selectCorrectZIPFile();
         clickOnButtonUpload();
-    }
-
-    public void selectFile(String fileName, String filterName){
-        clickOnButtonSelectCDRFile();
-        if (!isFileNameDisplayedOnSelectFileScreen(fileName)) {
-            if (filterName.equals("Blizzard Telecom (Union Str. aBILLity)")){
-                uploadFileBlizzardTelecom();
-            }
-            else if (filterName.equals("Gamma WLR/WLRPPU/WLROA FCSv3)")){
-                uploadFileGammaWLR();
-            }
-            utils.myAssertTrue("File name is not displayed on Select File screen", isFileNameDisplayedOnSelectFileScreen(fileName));
-        }
-        selectFilterInDDByText(filterName);
-        doubleClickOnFileIcon(fileName);
-        utils.myAssertTrue("File is not uploaded", isFileNameDisplayedOnImportCDRScreen(fileName));
     }
 
     public boolean isAlertAbsent() {
