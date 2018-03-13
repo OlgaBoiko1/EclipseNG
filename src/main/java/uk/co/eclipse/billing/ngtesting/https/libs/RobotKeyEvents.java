@@ -109,7 +109,7 @@ public class RobotKeyEvents {
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
             robot.delay(3000);
-        } catch (AWTException e) {
+        } catch (Exception e) {
             Assert.fail("" + e);
         }
     }
