@@ -26,8 +26,8 @@ public class WorkWithUploadWindow {
     public void SetActiveWindow(){
         User32 user32 = User32.instance;
         WinDef.HWND hWnd = user32.FindWindow(null, "Open");
-        //user32.ShowWindow(hWnd, User32.SW_SHOW);
-        //user32.SetForegroundWindow(hWnd);
+        user32.ShowWindow(hWnd, User32.SW_SHOW);
+        user32.SetForegroundWindow(hWnd);
         user32.SetFocus(hWnd);
         logger.info("Active window is set up");
     }
