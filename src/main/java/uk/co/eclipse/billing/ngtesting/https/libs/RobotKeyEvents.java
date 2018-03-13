@@ -71,7 +71,7 @@ public class RobotKeyEvents {
     public void typeText(String string){
         try {
             SetActiveWindow();
-            wait3Second();
+            waitABit(5000);
             int length = string.length();
                 for (int i = 0; i < length; i++)
                     {
