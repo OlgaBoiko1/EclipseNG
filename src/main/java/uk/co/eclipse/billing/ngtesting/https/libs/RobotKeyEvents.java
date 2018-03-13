@@ -34,7 +34,7 @@ public class RobotKeyEvents {
 
     public interface User32 extends W32APIOptions {
         WorkWithUploadWindow.User32 instance = (WorkWithUploadWindow.User32) Native.loadLibrary("user32", WorkWithUploadWindow.User32.class, DEFAULT_OPTIONS);
-        //boolean ShowWindow(WinDef.HWND hWnd, int nCmdShow);
+        boolean ShowWindow(WinDef.HWND hWnd, int nCmdShow);
         boolean SetForegroundWindow(WinDef.HWND hWnd);
         boolean SetFocus(WinDef.HWND hWnd);
         WinDef.HWND FindWindow(String winClass, String title);
@@ -44,8 +44,8 @@ public class RobotKeyEvents {
     public void SetActiveWindow(){
         WorkWithUploadWindow.User32 user32 = WorkWithUploadWindow.User32.instance;
         WinDef.HWND hWnd = user32.FindWindow(null, "Open");
+        user32.ShowWindow(hWnd, WorkWithUploadWindow.User32.SW_SHOW);
         user32.SetForegroundWindow(hWnd);
-        //user32.ShowWindow(hWnd, User32.SW_SHOW);
         user32.SetFocus(hWnd);
         logger.info("Active window is set up");
     }
