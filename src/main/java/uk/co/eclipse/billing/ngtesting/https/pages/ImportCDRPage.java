@@ -57,7 +57,7 @@ public class ImportCDRPage extends ParentPage {
     }
 
     public void enterPathToCDRFolder() {
-        robotKeyEvents.typeText(pathToCDRFolder);
+        robotKeyEvents.typeText("C:\\Upload\\cdr");
     }
 
     public void enterFileName(String fileName) {
