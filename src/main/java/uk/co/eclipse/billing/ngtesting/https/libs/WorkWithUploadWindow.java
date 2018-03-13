@@ -37,7 +37,8 @@ public class WorkWithUploadWindow {
             robot = new Robot();
             SetActiveWindow();
             robot.delay(3000);
-            robotKeyEvents.typeText("C");
+            robot.keyPress(KeyEvent.VK_C);
+            robot.keyRelease(KeyEvent.VK_C);
             robot.delay(2000);
 //            robotKeyEvents.typeText(":");
             robot.keyPress(KeyEvent.VK_SHIFT);
