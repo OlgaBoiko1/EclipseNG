@@ -73,6 +73,7 @@ public class RobotKeyEvents {
             robot = new Robot();
             robot.delay(3000);
             SetActiveWindow();
+            SetActiveWindow();
             robot.delay(3000);
             robot.keyPress(KeyEvent.VK_C);
             robot.keyRelease(KeyEvent.VK_C);
@@ -125,7 +126,7 @@ public class RobotKeyEvents {
                     {
                         char character = string.charAt(i);
                         typeCharacter(character);
-                        waitABit(1000);
+                        waitABit(500);
                     }
             wait3Second();
             logger.info(string + " have been entered");
