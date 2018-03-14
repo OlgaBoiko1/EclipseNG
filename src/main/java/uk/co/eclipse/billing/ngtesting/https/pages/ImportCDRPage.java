@@ -3,8 +3,8 @@ package uk.co.eclipse.billing.ngtesting.https.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.awt.*;
 
 public class ImportCDRPage extends ParentPage {
 
@@ -29,8 +29,11 @@ public class ImportCDRPage extends ParentPage {
     @FindBy(id = "footerPlaceholder_cboFiltersSvr")
     private WebElement filterDropDown;
 
-    @FindBy(xpath = ".//*[@value='Select' and @type='button']")
+    @FindBy(xpath = ".//*[@value='Remove' and @type='button']")
     private WebElement buttonSelect;
+
+    @FindBy(xpath = ".//*[@value='Remove' and @class='ruButton ruRemove']")
+    private WebElement buttonRemove;
 
     public ImportCDRPage(WebDriver webDriver) {
         super(webDriver);
@@ -76,6 +79,7 @@ public class ImportCDRPage extends ParentPage {
     }
 
     public void clickOnButtonUpload(){
+        actionWithOurElements.waitUntilVisibilityOfElement(buttonRemove);
         actionWithOurElements.clickOnElement(buttonUpload);
     }
 

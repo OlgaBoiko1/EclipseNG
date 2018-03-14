@@ -59,6 +59,15 @@ public class ActionsWithOurElements {
         }
     }
 
+    public void waitUntilVisibilityOfElement(WebElement element) {
+        try {
+            webDriverWait15.until(ExpectedConditions.visibilityOf(element));
+        } catch (Exception e) {
+            logger.error("Following element is not displayed: " + element + "' because: " + e);
+            Assert.fail("Following element is not displayed: " + element + "' because: " + e);
+        }
+    }
+
     public boolean isElementPresent(WebElement element) {
         try {
             if (element.isDisplayed()) {
