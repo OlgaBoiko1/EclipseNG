@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 
 public class RobotKeyEvents {
@@ -25,11 +24,6 @@ public class RobotKeyEvents {
             logger.error("Unable to create Robot object because: " + e);
             Assert.fail("Unable to create Robot object because: " + e);
         }
-    }
-
-    public static void setClipboardData(String string) {
-        StringSelection stringSelection = new StringSelection(string);
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
     }
 
     public interface User32 extends W32APIOptions {
@@ -50,72 +44,6 @@ public class RobotKeyEvents {
         logger.info("Active window is set up");
     }
 
-//    public void enterPathToCDRFolder(){
-//        try{ SetActiveWindow();
-//            setClipboardData("C:\\Upload\\cdr");
-//            robot.delay(4000);
-//            robot.keyPress(KeyEvent.VK_CONTROL);
-//            robot.keyPress(KeyEvent.VK_V);
-//            robot.keyRelease(KeyEvent.VK_V);
-//            robot.keyRelease(KeyEvent.VK_CONTROL);
-//            robot.delay(4000);
-//            pressEnterButton();
-//            robot.delay(3000);
-//        }
-//        catch (Exception e){
-//            logger.error("Can't enter path to CDR folder" + e);
-//            Assert.fail("Can't enter path to CDR folder" + e);
-//        }
-//    }
-
-    public void enterPathToCDRFolder() {
-        try {
-            robot = new Robot();
-            robot.delay(3000);
-            SetActiveWindow();
-            SetActiveWindow();
-            robot.delay(3000);
-            robot.keyPress(KeyEvent.VK_C);
-            robot.keyRelease(KeyEvent.VK_C);
-            robot.delay(2000);
-            robot.keyPress(KeyEvent.VK_SHIFT);
-            robot.keyPress(KeyEvent.VK_SEMICOLON);
-            robot.keyRelease(KeyEvent.VK_SEMICOLON);
-            robot.keyRelease(KeyEvent.VK_SHIFT);
-            robot.delay(2000);
-            robot.keyPress(KeyEvent.VK_BACK_SLASH);
-            robot.keyRelease(KeyEvent.VK_BACK_SLASH);
-            robot.delay(2000);
-            robot.keyPress(KeyEvent.VK_U);
-            robot.keyRelease(KeyEvent.VK_U);
-            robot.keyPress(KeyEvent.VK_P);
-            robot.keyRelease(KeyEvent.VK_P);
-            robot.keyPress(KeyEvent.VK_L);
-            robot.keyRelease(KeyEvent.VK_L);
-            robot.keyPress(KeyEvent.VK_O);
-            robot.keyRelease(KeyEvent.VK_O);
-            robot.keyPress(KeyEvent.VK_A);
-            robot.keyRelease(KeyEvent.VK_A);
-            robot.keyPress(KeyEvent.VK_D);
-            robot.keyRelease(KeyEvent.VK_D);
-            robot.keyPress(KeyEvent.VK_BACK_SLASH);
-            robot.keyRelease(KeyEvent.VK_BACK_SLASH);
-            robot.delay(2000);
-            robot.keyPress(KeyEvent.VK_C);
-            robot.keyRelease(KeyEvent.VK_C);
-            robot.keyPress(KeyEvent.VK_D);
-            robot.keyRelease(KeyEvent.VK_D);
-            robot.keyPress(KeyEvent.VK_R);
-            robot.keyRelease(KeyEvent.VK_R);
-            robot.delay(2000);
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-            robot.delay(3000);
-        } catch (AWTException e) {
-            Assert.fail("" + e);
-        }
-    }
-
     public void typeText(String string){
         try {
             wait3Second();
@@ -126,7 +54,7 @@ public class RobotKeyEvents {
                     {
                         char character = string.charAt(i);
                         typeCharacter(character);
-                        waitABit(500);
+                        waitABit(400);
                     }
             wait3Second();
             logger.info(string + " have been entered");
