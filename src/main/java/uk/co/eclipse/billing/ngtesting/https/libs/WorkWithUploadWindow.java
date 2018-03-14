@@ -35,7 +35,8 @@ public class WorkWithUploadWindow {
     public void enterPathToCDRFolder() {
         try {
             robot = new Robot();
-            //SetActiveWindow();
+            robot.delay(3000);
+            SetActiveWindow();
             robot.delay(3000);
             robot.keyPress(KeyEvent.VK_C);
             robot.keyRelease(KeyEvent.VK_C);

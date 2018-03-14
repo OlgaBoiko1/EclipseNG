@@ -71,6 +71,7 @@ public class RobotKeyEvents {
     public void enterPathToCDRFolder() {
         try {
             robot = new Robot();
+            robot.delay(3000);
             SetActiveWindow();
             robot.delay(3000);
             robot.keyPress(KeyEvent.VK_C);
