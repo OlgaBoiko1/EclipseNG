@@ -17,5 +17,5 @@ import uk.co.eclipse.billing.ngtesting.https.login.ValidLogOn;
         }
 )
 
-public class EndToEnd {
+public class TestSuite {
 }

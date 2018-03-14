@@ -3,7 +3,6 @@ package uk.co.eclipse.billing.ngtesting.https.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class ImportCDRPage extends ParentPage {
