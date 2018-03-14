@@ -32,7 +32,7 @@ public class ImportCDRPage extends ParentPage {
     @FindBy(xpath = ".//*[@value='Select' and @type='button']")
     private WebElement buttonSelect;
 
-    @FindBy(xpath = ".//*[@value='Remove' and @class='ruButton ruRemove']")
+    @FindBy(xpath = ".//*[@value='Remove' and @type='button']")
     private WebElement buttonRemove;
 
     public ImportCDRPage(WebDriver webDriver) {
