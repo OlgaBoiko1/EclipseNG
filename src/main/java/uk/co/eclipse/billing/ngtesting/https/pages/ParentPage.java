@@ -17,6 +17,7 @@ public class ParentPage{
     Utils utils;
     RobotKeyEvents robotKeyEvents;
     String baseURL;
+    String pathToCDRFolder;
 
     public ParentPage(WebDriver webDriver){
         this.webDriver = webDriver;
@@ -29,6 +30,7 @@ public class ParentPage{
 
         PageFactory.initElements(webDriver, this);
         baseURL = ConfigData.getCfgValue("BASE_URL");
+        pathToCDRFolder = ConfigData.getCfgValue("CDR_FOLDER_PATH");
     }
 
     public void open(String shortUrl){

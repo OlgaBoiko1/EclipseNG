@@ -1,5 +1,8 @@
 package uk.co.eclipse.billing.ngtesting.https.libs;
 
+import com.sun.jna.Native;
+import com.sun.jna.platform.win32.WinDef;
+import com.sun.jna.win32.W32APIOptions;
 import org.junit.Assert;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -23,28 +26,60 @@ public class RobotKeyEvents {
         }
     }
 
+    public interface User32 extends W32APIOptions {
+        User32 instance = (User32) Native.loadLibrary("user32", User32.class, DEFAULT_OPTIONS);
+        boolean ShowWindow(WinDef.HWND hWnd, int nCmdShow);
+        boolean SetForegroundWindow(WinDef.HWND hWnd);
+        boolean SetFocus(WinDef.HWND hWnd);
+        WinDef.HWND FindWindow(String winClass, String title);
+        int SW_SHOW = 1;
+    }
+
+    public void SetActiveWindow(){
+        wait3Second();
+        User32 user32 = User32.instance;
+        WinDef.HWND hWnd = user32.FindWindow(null, "Open");
+        user32.ShowWindow(hWnd, User32.SW_SHOW);
+        user32.SetForegroundWindow(hWnd);
+        user32.SetFocus(hWnd);
+        logger.info("Active window is set up");
+    }
+
     public void typeText(String string){
         try {
-                int length = string.length();
-                for (int i = 0; i < length; i++)
+            wait3Second();
+            SetActiveWindow();
+            wait3Second();
+                for (int i = 0; i < string.length(); i++)
                     {
                         char character = string.charAt(i);
                         typeCharacter(character);
+                        waitABit(400);
                     }
-                robot.delay(3000);
-                logger.info(string + " have been entered");
-                pressEnterButton();
-                robot.delay(3000);
+            wait3Second();
+            logger.info(string + " have been entered");
+            pressEnterButton();
+            wait3Second();
         } catch (Exception e) {
             logger.error("Can't type text: '" + string + " because: " + e);
             Assert.fail("Can't type text: '" + string + " because: " + e);
         }
     }
 
+    private void waitABit(int timeMS) {
+        robot.delay(timeMS);
+    }
+
+    private void wait3Second()
+    {
+        waitABit(3000);
+    }
+
     public void pressEnterButton()
     {
         try{
             robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
             logger.info("Enter button has been pressed");
 
         }
@@ -144,7 +179,7 @@ public class RobotKeyEvents {
             case '}': doType(KeyEvent.VK_SHIFT, KeyEvent. VK_CLOSE_BRACKET); break;
             case '|': doType(KeyEvent.VK_SHIFT, KeyEvent. VK_BACK_SLASH); break;
             case ';': doType(KeyEvent.VK_SEMICOLON); break;
-            case ':': doType(KeyEvent.VK_COLON); break;
+            case ':': doType(KeyEvent.VK_SHIFT, KeyEvent.VK_SEMICOLON); break;
             case '\'': doType(KeyEvent.VK_QUOTE); break;
             case '"': doType(KeyEvent.VK_QUOTEDBL); break;
             case ',': doType(KeyEvent.VK_COMMA); break;

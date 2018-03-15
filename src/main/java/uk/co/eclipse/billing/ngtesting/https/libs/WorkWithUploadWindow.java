@@ -10,12 +10,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class WorkWithUploadWindow {
+    RobotKeyEvents robotKeyEvents;
     Logger logger = Logger.getLogger(getClass());
     Robot robot;
 
     public interface User32 extends W32APIOptions {
         User32 instance = (User32) Native.loadLibrary("user32", User32.class, DEFAULT_OPTIONS);
-        //boolean ShowWindow(WinDef.HWND hWnd, int nCmdShow);
+        boolean ShowWindow(WinDef.HWND hWnd, int nCmdShow);
         boolean SetForegroundWindow(WinDef.HWND hWnd);
         boolean SetFocus(WinDef.HWND hWnd);
         WinDef.HWND FindWindow(String winClass, String title);
@@ -23,9 +24,9 @@ public class WorkWithUploadWindow {
     }
 
     public void SetActiveWindow(){
-        User32 user32 = User32.instance;
+        User32 user32 = (User32) User32.instance;
         WinDef.HWND hWnd = user32.FindWindow(null, "Open");
-        //user32.ShowWindow(hWnd, User32.SW_SHOW);
+        user32.ShowWindow(hWnd, User32.SW_SHOW);
         user32.SetForegroundWindow(hWnd);
         user32.SetFocus(hWnd);
         logger.info("Active window is set up");
@@ -34,11 +35,13 @@ public class WorkWithUploadWindow {
     public void enterPathToCDRFolder() {
         try {
             robot = new Robot();
+            robot.delay(3000);
             SetActiveWindow();
-            robot.delay(2000);
+            robot.delay(3000);
             robot.keyPress(KeyEvent.VK_C);
             robot.keyRelease(KeyEvent.VK_C);
             robot.delay(2000);
+//            robotKeyEvents.typeText(":");
             robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_SEMICOLON);
             robot.keyRelease(KeyEvent.VK_SEMICOLON);
