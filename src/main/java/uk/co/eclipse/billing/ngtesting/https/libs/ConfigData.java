@@ -1,6 +1,9 @@
 package uk.co.eclipse.billing.ngtesting.https.libs;
 
 
+import org.junit.Assert;
+
+import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -28,8 +31,15 @@ public class ConfigData {
     *  Note, please, that returned value is String.
     *  We should take care of value's type by himself when will use config data value in the test.
     */
-    public static String getCfgValue(String key) throws IOException {
-        return(getValueFromFile(key, cfgFile));
+    public static String getCfgValue(String key) {
+        String tempValue = "";
+        try{
+            tempValue = getValueFromFile(key, cfgFile);
+        }
+        catch(Exception e){
+            Assert.fail("Can't get value from config file because: " + e);
+        }
+        return(tempValue);
     }
 
 }

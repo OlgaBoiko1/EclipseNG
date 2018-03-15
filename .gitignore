@@ -14,3 +14,6 @@ target/site
 *.ipr
 *.iws
 
+/log/*
+/src/main/java/uk/co/eclipse/billing/ngtesting/https/data/testLoginData.xls
+/src/main/java/uk/co/eclipse/billing/ngtesting/https/data/testLoginData1.xls

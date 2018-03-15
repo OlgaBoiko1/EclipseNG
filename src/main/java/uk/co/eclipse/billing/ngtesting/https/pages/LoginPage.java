@@ -26,7 +26,7 @@ public class LoginPage extends ParentPage{
     }
 
     public void openLoginPage(){
-        open("https://ngtesting.eclipse-billing.co.uk/Login.aspx");
+        open("/Login.aspx");
     }
 
     public void enterCompanyToInput(String company){

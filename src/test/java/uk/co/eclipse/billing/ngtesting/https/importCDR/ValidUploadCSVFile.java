@@ -15,6 +15,7 @@ import java.util.Collection;
 
 @RunWith(value = Parameterized.class)
 public class ValidUploadCSVFile extends Parent{
+
     String cdrFileName, cdrFilterName;
     public String company = Properties.getCompany();
     public String login = Properties.getLogin();
@@ -37,11 +38,12 @@ public class ValidUploadCSVFile extends Parent{
         homePage.navigateToMenuImportCDR();
         importCDRPage.clickOnButtonSelectCDRFile();
         checkAC("Select File screen is not displayed",importCDRPage.isSelectFileScreenDisplayed(), true);
-        if (!importCDRPage.isFileNameDisplayedOnSelectFileScreen(cdrFileName)) {
+        if (importCDRPage.isFileNameAbsentOnSelectFileScreen(cdrFileName)) {
             importCDRPage.clickOnButtonSelectFileScreenUpload();
             checkAC("Upload screen is not displayed", importCDRPage.isUploadScreenDisplayed(), true);
             importCDRPage.mouseHoverAndClickOnButtonSelect();
-            importCDRPage.selectCSVFileBlizzardTelecom();
+            importCDRPage.enterPathToCDRFolder();
+            importCDRPage.enterFileName(cdrFileName);
             checkAC("File name is not displayed on Upload screen", importCDRPage.isFileNameDisplayedOnUploadScreen(cdrFileName), true);
             importCDRPage.clickOnButtonUpload();
             importCDRPage.acceptAlertIfPresent();

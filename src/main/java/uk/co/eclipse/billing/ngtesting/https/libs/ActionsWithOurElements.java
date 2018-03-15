@@ -59,6 +59,15 @@ public class ActionsWithOurElements {
         }
     }
 
+    public void waitUntilVisibilityOfElement(WebElement element) {
+        try {
+            webDriverWait15.until(ExpectedConditions.visibilityOf(element));
+        } catch (Exception e) {
+            logger.error("Following element is not displayed: " + element + "' because: " + e);
+            Assert.fail("Following element is not displayed: " + element + "' because: " + e);
+        }
+    }
+
     public boolean isElementPresent(WebElement element) {
         try {
             if (element.isDisplayed()) {
@@ -163,10 +172,14 @@ public class ActionsWithOurElements {
 
     public boolean isAlertAbsent() {
         try {
-            webDriverWait15.until(ExpectedConditions.alertIsPresent());
-            logger.info("Following alert appears: " + webDriver.switchTo().alert().getText());
-            return false;
+            if (webDriverWait15.until(ExpectedConditions.alertIsPresent())==null)
+                return true;
+            else {
+                logger.info("Following alert appears: " + webDriver.switchTo().alert().getText());
+                return false;
+            }
         } catch (Exception e) {
+            logger.error("Exception occurs: " + e);
             return true;
         }
     }
