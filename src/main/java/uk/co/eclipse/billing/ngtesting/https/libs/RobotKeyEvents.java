@@ -36,6 +36,7 @@ public class RobotKeyEvents {
     }
 
     public void SetActiveWindow(){
+        wait3Second();
         User32 user32 = User32.instance;
         WinDef.HWND hWnd = user32.FindWindow(null, "Open");
         user32.ShowWindow(hWnd, User32.SW_SHOW);
