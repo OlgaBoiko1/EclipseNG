@@ -50,8 +50,7 @@ public class RobotKeyEvents {
             wait3Second();
             SetActiveWindow();
             wait3Second();
-            int length = string.length();
-                for (int i = 0; i < length; i++)
+                for (int i = 0; i < string.length(); i++)
                     {
                         char character = string.charAt(i);
                         typeCharacter(character);
@@ -71,8 +70,9 @@ public class RobotKeyEvents {
         robot.delay(timeMS);
     }
 
-    private void wait3Second() {
-        robot.delay(3000);
+    private void wait3Second()
+    {
+        waitABit(3000);
     }
 
     public void pressEnterButton()
