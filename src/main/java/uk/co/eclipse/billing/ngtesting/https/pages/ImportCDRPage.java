@@ -59,7 +59,7 @@ public class ImportCDRPage extends ParentPage {
     }
 
     public void enterPathToCDRFolder() {
-        robotKeyEvents.SetActiveWindow();
+        robotKeyEvents.typeText("");
         robotKeyEvents.typeText(pathToCDRFolder);
     }
 
@@ -90,7 +90,7 @@ public class ImportCDRPage extends ParentPage {
         return actionWithOurElements.isElementPresent(".//span[text()='"+fileName+"']");
     }
 
-    public boolean isFileNameAbsentOnSelectFileScreen(String fileName) {
+    public boolean isFileNameAbsentOnScreen(String fileName) {
         return actionWithOurElements.isElementAbsent(".//span[text()='"+fileName+"']");
     }
 
@@ -141,6 +141,28 @@ public class ImportCDRPage extends ParentPage {
         mouseHoverAndClickOnButtonSelect();
         selectCorrectZIPFile();
         clickOnButtonUpload();
+    }
+
+    public void uploadFile(String cdrFileName){
+        clickOnButtonSelectFileScreenUpload();
+        mouseHoverAndClickOnButtonSelect();
+        enterPathToCDRFolder();
+        enterFileName(cdrFileName);
+        clickOnButtonUpload();
+        acceptAlertIfPresent();
+    }
+
+    public void selectFileIfAbsent(String cdrFileName, String cdrFilterName){
+        if(isFileNameAbsentOnScreen(cdrFileName)) {
+            clickOnButtonSelectCDRFile();
+            if (isFileNameAbsentOnScreen(cdrFileName)) {
+                uploadFile(cdrFileName);
+            }
+            selectFilterInDDByText(cdrFilterName);
+            doubleClickOnFileIcon(cdrFileName);
+            acceptAlertIfPresent();
+            utils.myAssertTrue("File is not uploaded", isFileNameDisplayedOnImportCDRScreen(cdrFileName));
+        }
     }
 
     public boolean isAlertAbsent() {
