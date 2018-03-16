@@ -95,11 +95,9 @@ public class ActionsWithOurElements {
     public boolean isElementAbsent(String xpath) {
         try {
             if (webDriver.findElement(By.xpath(xpath)).isDisplayed()) {
-                //logger.info("Element is present on the page. It is correct. " + xpath);
                 return false;
             } else return true;
         } catch (Exception e) {
-            //logger.info("Element is absent on the page. It is correct. " + xpath);
             return true;
         }
     }

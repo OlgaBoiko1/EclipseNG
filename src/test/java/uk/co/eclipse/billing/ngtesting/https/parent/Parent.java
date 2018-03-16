@@ -1,5 +1,6 @@
 package uk.co.eclipse.billing.ngtesting.https.parent;
 
+
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
@@ -47,6 +48,7 @@ public class Parent {
     @Before
     public void setUp() throws MalformedURLException {
         File file = new File("");
+        logger.info(testName.getMethodName() + " has been started!");
 
         if (Properties.getBrowser().equalsIgnoreCase("RemoteChrome")){
             logger.info("Chrome will be started");
@@ -89,6 +91,7 @@ public class Parent {
             }
             webDriver.quit();
         }
+        logger.info(testName.getMethodName()  + " has been finished!");
     }
 
 
